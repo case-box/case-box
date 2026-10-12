@@ -1015,8 +1015,8 @@
     </div>
 
     <div class="stats reveal">
-      <div class="stat"><div class="stat-num" data-count="500">0</div><div class="stat-label">довольных клиентов</div></div>
-      <div class="stat"><div class="stat-num" data-count="1200">0</div><div class="stat-label">изделий напечатано</div></div>
+      <div class="stat"><div class="stat-num" data-count="6000">0</div><div class="stat-label">довольных клиентов</div></div>
+      <div class="stat"><div class="stat-num" data-count="12000">0</div><div class="stat-label">изделий напечатано</div></div>
       <div class="stat"><div class="stat-num" data-count="24">0</div><div class="stat-label">часа на заказ</div></div>
     </div>
 
@@ -1336,136 +1336,140 @@
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   const heroPhotos = [
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000100179.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000097119.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000095980.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000095999.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000093373.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000093037.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000090169.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000081312.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000078808.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000100184.jpg'
-  ];
+  'https://iili.io/nW9yx8g.jpg',
+  'https://iili.io/nW9yTAJ.jpg',
+  'https://iili.io/nW9yI9a.jpg',
+  'https://iili.io/nW9yuwv.jpg',
+  'https://iili.io/nW9yAtR.jpg',
+  'https://iili.io/nW9y5np.jpg',
+  'https://iili.io/nW9y7MN.jpg',
+  'https://iili.io/nW9yYPI.jpg',
+  'https://iili.io/nW9ylcX.jpg',
+  'https://iili.io/nW9y0Sn.jpg',
+  'https://iili.io/nW9yGAG.jpg',
+  'https://iili.io/nW9yE9s.jpg'
+];
 
   const catalogData = [
-    { title: 'Бутылки для воды 500 мл', price: 'Цену уточняем (зависит от количества)', icon: 'bottle', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260421145317.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260428130316.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260409_125058.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260321115212.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260411125054.jpg'
-    ]},
-    { title: 'Кружки белые Premium', price: 'Цену уточняем (зависит от количества)', icon: 'cup', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20250726145530.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213173241.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260115111401.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251218144119.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1703699500397.jpg'
-    ]},
-    { title: 'Необычные кружки', price: 'Цену уточняем (зависит от количества)', icon: 'cup', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20241101140157.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/Screenshot_2025-03-04-20-54-31-31_5228fc5d2ad2c517ecb981db677d9e34.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213154645.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/avito-1771069016137-shot.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260604125035.jpg'
-    ]},
-    { title: 'Тарелки сувенирные для учителей / воспитателей', price: 'Цену уточняем (зависит от количества)', icon: 'plate', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260925_135434_0988.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260604_175734.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260427213557.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260517_112855.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260519_145103_715.jpeg'
-    ]},
-    { title: 'Тарелки с фото / картинками', price: 'Цену уточняем (зависит от количества)', icon: 'plate', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250702_200214_0320.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260613_030322.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251108_155722_0780.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000100722.jpg'
-    ]},
-    { title: 'Футболки и худи с принтом', price: 'Цену уточняем (зависит от количества)', icon: 'tshirt', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250723_172806_0795.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250702_200414.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250721_132627_0634.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000100721.jpg'
-    ]},
-    { title: 'Носки с принтом', price: 'Цену уточняем (зависит от количества)', icon: 'socks', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251127174339.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251127_183019.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251225_172937.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251225164942.jpg'
-    ]},
-    { title: 'Подушки с фото / картинками', price: 'Цену уточняем (зависит от количества)', icon: 'pillow', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251220191109.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251220191055.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250702_200233_0649.jpg'
-    ]},
-    { title: 'Бейсболка с печатью', price: 'Цену уточняем (зависит от количества)', icon: 'cap', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000094746.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000094747.jpg'
-    ]},
-    { title: 'Печать на ручках и блокнотах', price: 'Цену уточняем (зависит от количества)', icon: 'pen', photos: [
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260127_183006.jpg',
-      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000094411.jpg'
-    ]},
-    { title: 'Печать на шопперах', price: 'Цену уточняем (зависит от количества)', icon: 'bag', photos: ['', '', ''] }
-  ];
+  { title: 'Бутылки для воды 500 мл', price: 'Цену уточняем (зависит от количества)', icon: 'bottle', photos: [
+    'https://iili.io/nWHnV2f.md.jpg',
+    'https://iili.io/nWHnhp2.md.jpg',
+    'https://iili.io/nWHnXkl.md.jpg',
+    'https://iili.io/nWHnW74.md.jpg',
+    'https://iili.io/nWHnwIS.md.jpg'
+  ]},
+  { title: 'Кружки белые Premium', price: 'Цену уточняем (зависит от количества)', icon: 'cup', photos: [
+    'https://iili.io/nWHoZtS.md.jpg',
+    'https://iili.io/nWHfOl4.md.jpg',
+    'https://iili.io/nWHoQN2.md.jpg',
+    'https://iili.io/nWHfhVs.md.jpg',
+    'https://iili.io/nWHobV9.md.jpg'
+  ]},
+  { title: 'Необычные кружки', price: 'Цену уточняем (зависит от количества)', icon: 'cup', photos: [
+    'https://iili.io/nW9yuwv.md.jpg',
+    'https://iili.io/nWHB73v.md.jpg',
+    'https://iili.io/nWHBIZF.md.jpg',
+    'https://iili.io/nWHBAGa.md.jpg',
+    'https://iili.io/nWHBavp.md.jpg'
+  ]},
+  { title: 'Тарелки сувенирные для учителей / воспитателей', price: 'Цену уточняем (зависит от количества)', icon: 'plate', photos: [
+    'https://iili.io/nWHzlLP.md.jpg',
+    'https://iili.io/nWHz1B1.md.jpg',
+    'https://iili.io/nWHzGrg.md.jpg',
+    'https://iili.io/nWHzV2a.md.jpg'
+  ]},
+  { title: 'Тарелки с фото / картинками', price: 'Цену уточняем (зависит от количества)', icon: 'plate', photos: [
+    'https://iili.io/nWHIBaa.md.jpg',
+    'https://iili.io/nWHIq3g.md.jpg',
+    'https://iili.io/nW9y0Sn.md.jpg',
+    'https://iili.io/nWHIC8J.md.jpg',
+    'https://iili.io/nWHIzjp.md.jpg'
+  ]},
+  { title: 'Футболки и худи с принтом', price: 'Цену уточняем (зависит от количества)', icon: 'tshirt', photos: [
+    'https://iili.io/nW9yE9s.md.jpg',
+    'https://iili.io/nWHTcf1.md.jpg',
+    'https://iili.io/nWHTYiP.md.jpg',
+    'https://iili.io/nWHT7WB.md.jpg'
+  ]},
+  { title: 'Носки с принтом', price: 'Цену уточняем (зависит от количества)', icon: 'socks', photos: [
+    'https://iili.io/nWHTSef.md.jpg',
+    'https://iili.io/nWHTrzl.md.jpg',
+    'https://iili.io/nWHT4X2.md.jpg',
+    'https://iili.io/nWHTUb4.md.jpg'
+  ]},
+  { title: 'Подушки с фото / картинками', price: 'Цену уточняем (зависит от количества)', icon: 'pillow', photos: [
+    'https://iili.io/nWHupvs.md.jpg',
+    'https://iili.io/nWHuman.md.jpg',
+    'https://iili.io/nWHub3X.md.jpg'
+  ]},
+  { title: 'Бейсболка с печатью', price: 'Цену уточняем (зависит от количества)', icon: 'cap', photos: [
+    'https://iili.io/nW9yGAG.md.jpg',
+    'https://iili.io/nWHA7F1.md.jpg'
+  ]},
+  { title: 'Печать на ручках и блокнотах', price: 'Цену уточняем (зависит от количества)', icon: 'pen', photos: [
+    'https://iili.io/nWHR2Ra.md.jpg',
+    'https://iili.io/nWHRdHg.md.jpg',
+    'https://iili.io/nWHR3OJ.md.jpg',
+    'https://iili.io/nWHRFDv.md.jpg'
+  ]},
+  { title: 'Печать на шопперах', price: 'Цену уточняем (зависит от количества)', icon: 'bag', photos: [
+    'https://iili.io/nWHRMOb.md.jpg'
+  ]}
+];
 
   const worksRow1 = [
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260925_135407_0433.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260925_135418_0017.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260906_095758.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/hPq4VbXfQk_OX2KmOJ_8164-wL6c0h_9IPY7wCfDq0ZaEX6GnYmHA89xKCkOTC1HD7jUfdHXuwA91wHoxVdGPx7_.webp',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260522130630.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260423_172427.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260421144920.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/avito-1775923851218-shot.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260409_125058442efaff60fedd1f.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260402_101851.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260321114917.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260410151436.jpg'
-  ];
+  'https://iili.io/nWH0qp1.md.jpg',
+  'https://iili.io/nW9yI9a.md.jpg',
+  'https://iili.io/nW9yTAJ.md.jpg',
+  'https://iili.io/nWH0nhg.md.jpg',
+  'https://iili.io/nWHnW74.md.jpg',
+  'https://iili.io/nWH0zCJ.md.jpg',
+  'https://iili.io/nWH0IEv.md.jpg',
+  'https://iili.io/nWH0T4R.md.jpg',
+  'https://iili.io/nWHKjaV.md.jpg',
+  'https://iili.io/nWH0RYN.md.jpg',
+  'https://iili.io/nWH05vI.md.jpg',
+  'https://iili.io/nW9y5np.md.jpg',
+  'https://iili.io/nWH0aTX.md.jpg',
+  'https://iili.io/nWH0cjn.md.jpg'
+];
 
-  const worksRow2 = [
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20250726145509.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG-20250916-WA0001.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251218144119c12c76479d0503fb.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260115111412.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213173309.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260303140956.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260519130427.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260604125010.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260902_205949.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260825_164409.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/Screenshot_2026-10-05-17-15-43-74_5228fc5d2ad2c517ecb981db677d9e34.jpg'
-  ];
+const worksRow2 = [
+  'https://iili.io/nWH1yfj.md.jpg',
+  'https://iili.io/nWH1mib.md.jpg',
+  'https://iili.io/nW9yYPI.md.jpg',
+  'https://iili.io/nWH1Dxe.md.jpg',
+  'https://iili.io/nWHoQN2.md.jpg',
+  'https://iili.io/nWHEHUQ.md.jpg',
+  'https://iili.io/nWHEdJV.md.jpg',
+  'https://iili.io/nWHfhVs.md.jpg',
+  'https://iili.io/nWHfNff.md.jpg',
+  'https://iili.io/nWHfjiG.md.jpg'
+];
 
-  const worksRow3 = [
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20240627_121615.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20241229083942.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/Screenshot_2025-02-20-20-20-40-02_5228fc5d2ad2c517ecb981db677d9e34.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213185636.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/avito-1772044013334-shot.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260605141416.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1791284348762.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251108_155722_0780caa391a578177bd3.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250716_185410.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20241217085054.jpg'
-  ];
+const worksRow3 = [
+  'https://iili.io/nWHEZ2R.md.jpg',
+  'https://iili.io/nWHEsEJ.md.jpg',
+  'https://iili.io/nWHEt7p.md.jpg',
+  'https://iili.io/nWHELrv.md.jpg',
+  'https://iili.io/nWHEyhX.md.jpg',
+  'https://iili.io/nWHG9Qn.md.jpg',
+  'https://iili.io/nWHGdEG.md.jpg',
+  'https://iili.io/nWHG24f.md.jpg',
+  'https://iili.io/nW9bcFe.md.jpg'
+];
 
-  const worksRow4 = [
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000100721252a15d59126a3b5.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260604_1757342a1bc63995bb2b0d.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260530131302.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260519_145103_253.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260517_112930.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260402_102503.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251225165009.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251127174310.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250728_130408.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250723_172806_0795455687306922cf0b.jpg',
-    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260127_183006d0f194e06e173b1c.jpg'
-  ];
+const worksRow4 = [
+  'https://iili.io/nW9yE9s.md.jpg',
+  'https://iili.io/nWHA7F1.md.jpg',
+  'https://iili.io/nWHR3OJ.md.jpg',
+  'https://iili.io/nWHBIZF.md.jpg',
+  'https://iili.io/nWHz1B1.md.jpg',
+  'https://iili.io/nWHzlLP.md.jpg',
+  'https://iili.io/nWHRFDv.md.jpg',
+  'https://iili.io/nWHTUb4.md.jpg',
+  'https://iili.io/nWHMmsn.md.jpg'
+];
 
   const icons = {
     cup: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-cup"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M12 14h32v36a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V14z" stroke="url(#i-cup)" stroke-width="3"/><path d="M44 22h6a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6h-6" stroke="url(#i-cup)" stroke-width="3"/></svg>`,
@@ -1755,4 +1759,4 @@ _Фото пример отправлю следующим сообщением_
 </script>
 
 </body>
-         </html>
+</html>
