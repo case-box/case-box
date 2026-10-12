@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASEBOX — нанесение принтов в Казани</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Montserrat:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    background: #141428; color: #e8e8f0; line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== ФОНОВЫЕ СЛОИ ===== */
+  .bg-glow {
+    position: fixed; inset: 0; z-index: -3; pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(139,92,246,0.35), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(59,130,246,0.35), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(236,72,153,0.15), transparent 60%),
+      linear-gradient(180deg, #1a1a35 0%, #141428 50%, #0f0f22 100%);
+    animation: glowMove 18s ease-in-out infinite alternate;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  @keyframes glowMove {
+    0% { transform: scale(1) translate(0,0) translateZ(0); }
+    100% { transform: scale(1.15) translate(-30px,20px) translateZ(0); }
+  }
+
+  .stars { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+  .star {
+    position: absolute; background: #fff; border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+    will-change: opacity, transform;
+    transform: translateZ(0);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8) translateZ(0); }
+    50% { opacity: 1; transform: scale(1.3) translateZ(0); }
+  }
+
+  .comets { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+  .comet {
+    position: absolute; width: 4px; height: 4px;
+    background: #fff; border-radius: 50%;
+    box-shadow:
+      0 0 10px 2px rgba(255,255,255,0.9),
+      0 0 20px 4px rgba(192,132,252,0.7),
+      0 0 30px 6px rgba(96,165,250,0.5);
+    animation: cometFly linear infinite;
+    opacity: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  .comet::before {
+    content: ''; position: absolute; top: 50%; right: 0;
+    width: 140px; height: 2px; transform: translateY(-50%);
+    background: linear-gradient(90deg, transparent, rgba(192,132,252,0.8), #fff);
+    border-radius: 50%; filter: blur(1px);
+  }
+  @keyframes cometFly {
+    0% { transform: translate(100vw, -10vh) rotate(-35deg) translateZ(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(-30vw, 90vh) rotate(-35deg) translateZ(0); opacity: 0; }
+  }
+
+  .particles { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .particle {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,132,252,0.9), transparent);
+    animation: riseUp linear infinite;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  @keyframes riseUp {
+    0% { transform: translateY(100vh) scale(0) translateZ(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) scale(1) translateZ(0); opacity: 0; }
+  }
+
+  /* Пауза фоновых анимаций при скролле */
+  body.scrolling .bg-glow,
+  body.scrolling .star,
+  body.scrolling .comet,
+  body.scrolling .particle {
+    animation-play-state: paused;
+  }
+
+  /* ===== ШАПКА ===== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(20,20,40,0.85);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 0;
+  }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px; font-weight: 900; letter-spacing: 6px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #c084fc 0%, #60a5fa 50%, #f472b6 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: logoShift 4s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(192,132,252,0.9));
+    position: relative;
+    will-change: background-position;
+  }
+  .logo::after {
+    content: 'CASEBOX'; position: absolute; left: 0; top: 0;
+    background: linear-gradient(90deg, #c084fc, #60a5fa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: blur(12px); opacity: 0.7; z-index: -1;
+  }
+  @keyframes logoShift { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+  nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  nav button {
+    background: rgba(255,255,255,0.06); color: #c8c8d8;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 9px 18px; border-radius: 50px; font-size: 14px;
+    cursor: pointer; transition: all 0.3s; font-family: inherit; font-weight: 600;
+  }
+  nav button:hover { background: rgba(168,85,247,0.2); color: #fff; border-color: rgba(168,85,247,0.6); transform: translateY(-2px); }
+  nav button.active {
+    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    color: #fff; border-color: transparent;
+    box-shadow: 0 0 20px rgba(168,85,247,0.6);
+  }
+
+  .page { display: none; padding: 60px 0; min-height: 70vh; }
+  .page.active { display: block; animation: fadeUp 0.5s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  h2 {
+    font-size: 38px; margin-bottom: 40px; text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(90deg, #c084fc, #60a5fa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 800; letter-spacing: 2px;
+  }
+
+  /* ===== БАННЕР ===== */
+  .hero-banner {
+    position: relative; min-height: 480px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 60px 30px; margin-bottom: 40px;
+    border-radius: 30px; overflow: hidden;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(168,85,247,0.4), transparent 55%),
+      radial-gradient(circle at 70% 70%, rgba(59,130,246,0.4), transparent 55%),
+      linear-gradient(135deg, #1a1a3a 0%, #0f0f28 100%);
+    border: 1px solid rgba(168,85,247,0.3);
+    box-shadow: 0 0 80px rgba(168,85,247,0.3), inset 0 0 100px rgba(59,130,246,0.15);
+    isolation: isolate;
+  }
+  .hero-banner::before {
+    content: ''; position: absolute; inset: -50%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(192,132,252,0.4) 60deg, transparent 120deg, rgba(96,165,250,0.4) 180deg, transparent 240deg, rgba(244,114,182,0.4) 300deg, transparent 360deg);
+    animation: rotateGlow 10s linear infinite; z-index: 0; opacity: 0.6;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  @keyframes rotateGlow { from { transform: rotate(0deg) translateZ(0); } to { transform: rotate(360deg) translateZ(0); } }
+  .hero-banner::after {
+    content: ''; position: absolute; inset: 2px; border-radius: 28px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(168,85,247,0.35), transparent 55%),
+      radial-gradient(circle at 70% 70%, rgba(59,130,246,0.35), transparent 55%),
+      linear-gradient(135deg, #14142e 0%, #0a0a1c 100%);
+    z-index: 0;
+  }
+  .hero-banner > * { position: relative; z-index: 2; }
+
+  .hero-tagline {
+    display: inline-block; padding: 8px 22px;
+    background: rgba(192,132,252,0.15);
+    border: 1px solid rgba(192,132,252,0.5);
+    border-radius: 50px; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: #c084fc; margin-bottom: 25px;
+  }
+
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 72px; font-weight: 900; letter-spacing: 8px; line-height: 1;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #fff 0%, #c084fc 25%, #60a5fa 50%, #f472b6 75%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shine 5s linear infinite;
+    filter: drop-shadow(0 0 30px rgba(192,132,252,0.6));
+    will-change: background-position;
+  }
+  @keyframes shine { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+  .hero-subtitle {
+    font-size: 20px; color: #d8d8e8; margin-bottom: 40px; max-width: 600px;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;
+  }
+
+  .hero-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+    color: #fff; padding: 18px 40px; border-radius: 50px;
+    text-decoration: none; font-weight: 800; font-size: 16px; letter-spacing: 1px;
+    border: none; cursor: pointer; font-family: inherit;
+    position: relative; overflow: hidden;
+    box-shadow: 0 0 30px rgba(168,85,247,0.6), 0 10px 40px rgba(59,130,246,0.4);
+    transition: all 0.4s; animation: pulseBtn 2.5s ease-in-out infinite;
+    text-transform: uppercase;
+    will-change: box-shadow, transform;
+    transform: translateZ(0);
+  }
+  .hero-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
+  }
+  .hero-btn:hover::before { left: 100%; }
+  .hero-btn:hover { transform: translateY(-3px) scale(1.05) translateZ(0); box-shadow: 0 0 50px rgba(168,85,247,0.9); }
+  .hero-btn svg { width: 22px; height: 22px; animation: arrowMove 1.5s ease-in-out infinite; }
+  @keyframes arrowMove { 0%,100% { transform: translateX(0) translateZ(0); } 50% { transform: translateX(6px) translateZ(0); } }
+  @keyframes pulseBtn {
+    0%, 100% { box-shadow: 0 0 30px rgba(168,85,247,0.6), 0 10px 40px rgba(59,130,246,0.4); }
+    50% { box-shadow: 0 0 50px rgba(168,85,247,0.9), 0 10px 50px rgba(59,130,246,0.6); }
+  }
+  .hero-btn-ghost {
+    background: transparent;
+    border: 2px solid rgba(192,132,252,0.6);
+    color: #c084fc; animation: none; box-shadow: none;
+  }
+  .hero-btn-ghost:hover { background: rgba(192,132,252,0.15); border-color: #c084fc; box-shadow: 0 0 30px rgba(192,132,252,0.5); }
+
+  /* ===== КОСМИЧЕСКАЯ КАРУСЕЛЬ (без CSS-анимации — двигает JS) ===== */
+  .hero-carousel {
+    margin: 40px 0 70px;
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  }
+
+  .hero-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    padding: 0 30px;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .hero-slide {
+    width: 300px;
+    height: 230px;
+    flex-shrink: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(59,130,246,0.2));
+    box-shadow:
+      0 8px 16px rgba(0,0,0,0.35),
+      0 20px 40px rgba(0,0,0,0.3),
+      0 30px 70px rgba(168,85,247,0.25);
+    animation: floatY 4s ease-in-out infinite;
+    transition: filter 0.4s;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .hero-slide:nth-child(3n) { animation-delay: 0.7s; }
+  .hero-slide:nth-child(3n+1) { animation-delay: 1.4s; }
+  .hero-slide:nth-child(3n+2) { animation-delay: 0s; }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0) rotateZ(0deg) translateZ(0); }
+    50% { transform: translateY(-8px) rotateZ(0.5deg) translateZ(0); }
+  }
+
+  .hero-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 22px;
+    display: block;
+    transition: transform 0.6s;
+  }
+
+  .hero-slide::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 28px;
+    background: radial-gradient(circle at 50% 50%, rgba(192,132,252,0.5), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: -1;
+    filter: blur(20px);
+  }
+  .hero-slide:hover::before { opacity: 1; }
+  .hero-slide:hover img { transform: scale(1.04); }
+
+  .hero-slide svg {
+    width: 60px; height: 60px;
+    filter: drop-shadow(0 0 12px rgba(192,132,252,0.8));
+  }
+
+  /* ===== КАРУСЕЛИ "НАШИ РАБОТЫ" (без CSS-анимации — двигает JS) ===== */
+  .works-row {
+    margin: 35px 0; overflow: hidden; position: relative;
+    padding: 30px 0;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    content-visibility: auto;
+    contain-intrinsic-size: 260px;
+  }
+
+  .works-track {
+    display: flex; gap: 30px; width: max-content; padding: 0 20px;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .work-slide {
+    width: 240px; height: 200px; flex-shrink: 0;
+    border-radius: 18px; overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(59,130,246,0.18));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow:
+      0 6px 12px rgba(0,0,0,0.3),
+      0 15px 30px rgba(0,0,0,0.28),
+      0 25px 50px rgba(168,85,247,0.2);
+    transform: translateZ(0);
+  }
+  .work-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .work-slide::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 24px;
+    background: radial-gradient(circle, rgba(192,132,252,0.45), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: -1;
+    filter: blur(15px);
+  }
+  .work-slide:hover::before { opacity: 1; }
+  .work-slide:hover img { transform: scale(1.05); }
+  .work-slide svg { width: 55px; height: 55px; }
+
+  /* ===== МИНИ-КАРУСЕЛЬ В КАТАЛОГЕ ===== */
+  .mini-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 28px 25px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168,85,247,0.5) transparent;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scroll-behavior: auto;
+  }
+  .mini-carousel::-webkit-scrollbar { height: 6px; }
+  .mini-carousel::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+  .mini-carousel::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #a855f7, #3b82f6); border-radius: 10px; }
+
+  .mini-slide {
+    scroll-snap-align: start;
+    width: 190px; height: 190px; flex-shrink: 0;
+    border-radius: 18px; overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(59,130,246,0.18));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow:
+      0 5px 10px rgba(0,0,0,0.3),
+      0 12px 24px rgba(0,0,0,0.28),
+      0 20px 40px rgba(168,85,247,0.18);
+    transition: transform 0.3s;
+  }
+  .mini-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .mini-slide::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 22px;
+    background: radial-gradient(circle, rgba(192,132,252,0.4), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: -1;
+    filter: blur(12px);
+  }
+  .mini-slide:hover::before { opacity: 1; }
+  .mini-slide:hover img { transform: scale(1.05); }
+  .mini-slide svg { width: 44px; height: 44px; }
+
+  /* ===== СТАТИСТИКА ===== */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 20px; margin: 30px 0; }
+  .stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 25px 15px; text-align: center; transition: all 0.4s;
+  }
+  .stat:hover { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.5); transform: translateY(-5px); }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif; font-size: 34px; font-weight: 900;
+    background: linear-gradient(135deg, #c084fc, #60a5fa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .stat-label { font-size: 14px; color: #b8b8d0; margin-top: 6px; }
+
+  /* ===== ПРЕИМУЩЕСТВА ===== */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 40px; }
+  .feature {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 30px 22px; text-align: center;
+    transition: all 0.4s; position: relative; overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 10px 24px rgba(168,85,247,0.1);
+  }
+  .feature::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(59,130,246,0.2));
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .feature:hover::before { opacity: 1; }
+  .feature:hover {
+    transform: translateY(-8px);
+    border-color: rgba(168,85,247,0.6);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 20px 50px rgba(168,85,247,0.4);
+  }
+  .feature > * { position: relative; z-index: 1; }
+  .feature-icon {
+    width: 64px; height: 64px; margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center;
+    filter: drop-shadow(0 0 15px rgba(168,85,247,0.8));
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .feature-icon svg { width: 100%; height: 100%; }
+  @keyframes float { 0%,100% { transform: translateY(0) translateZ(0); } 50% { transform: translateY(-8px) translateZ(0); } }
+  .feature h3 { font-size: 18px; margin-bottom: 8px; color: #fff; font-weight: 800; }
+  .feature p { font-size: 14px; color: #b8b8d0; }
+
+  /* ===== КАТАЛОГ ===== */
+  .catalog-category {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px; padding: 28px 0;
+    margin-bottom: 24px; overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  .category-header { display: flex; align-items: flex-start; gap: 15px; padding: 0 28px 20px; }
+  .category-icon {
+    width: 50px; height: 50px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    filter: drop-shadow(0 0 12px rgba(168,85,247,0.8));
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .category-icon svg { width: 100%; height: 100%; }
+  .category-title h3 { font-size: 22px; color: #fff; font-weight: 800; margin-bottom: 6px; }
+  .category-title .price {
+    font-size: 15px; font-weight: 700;
+    background: linear-gradient(135deg, #c084fc, #60a5fa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    line-height: 1.5;
+  }
+
+  /* ===== ОТЗЫВЫ — ЗАПИСКИ ===== */
+  .reviews-wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  .review-note {
+    position: relative;
+    padding: 35px 28px 28px;
+    border-radius: 4px;
+    color: #2a2a35;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    line-height: 1.5;
+    box-shadow:
+      0 6px 15px rgba(0,0,0,0.4),
+      0 2px 5px rgba(0,0,0,0.3);
+    transition: transform 0.4s, box-shadow 0.4s;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-origin: center;
+  }
+  .review-note:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    box-shadow:
+      0 20px 50px rgba(168,85,247,0.5),
+      0 8px 20px rgba(0,0,0,0.4);
+    z-index: 10;
+  }
+
+  .review-note:nth-child(1)  { background: #fef3c7; transform: rotate(-1.5deg); }
+  .review-note:nth-child(2)  { background: #dbeafe; transform: rotate(1.2deg); }
+  .review-note:nth-child(3)  { background: #fce7f3; transform: rotate(-0.8deg); }
+  .review-note:nth-child(4)  { background: #ddd6fe; transform: rotate(1.8deg); }
+  .review-note:nth-child(5)  { background: #d1fae5; transform: rotate(-1.2deg); }
+  .review-note:nth-child(6)  { background: #ffe4d6; transform: rotate(1.5deg); }
+  .review-note:nth-child(7)  { background: #e0f2fe; transform: rotate(-1.8deg); }
+  .review-note:nth-child(8)  { background: #f5d0fe; transform: rotate(0.9deg); }
+
+  .review-note::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #c084fc 60%, #7c3aed);
+    box-shadow:
+      0 3px 6px rgba(0,0,0,0.4),
+      inset -2px -2px 4px rgba(0,0,0,0.2),
+      inset 2px 2px 4px rgba(255,255,255,0.5);
+  }
+
+  .review-note::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      rgba(0,0,0,0.06) 27px,
+      rgba(0,0,0,0.06) 28px
+    );
+    pointer-events: none;
+  }
+
+  .review-note-text {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    padding-bottom: 15px;
+  }
+
+  .review-note-author {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 22px;
+    color: #7c3aed;
+    text-align: right;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(124,58,237,0.3);
+  }
+
+  /* ===== ДОСТАВКА ===== */
+  .delivery-info {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .delivery-lead {
+    text-align: center;
+    font-size: 17px;
+    color: #c8c8d8;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    margin-bottom: 40px;
+  }
+  .delivery-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 22px;
+    padding: 30px 24px;
+    text-align: center;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25), 0 15px 35px rgba(168,85,247,0.15);
+  }
+  .delivery-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(59,130,246,0.2));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .delivery-card:hover::before { opacity: 1; }
+  .delivery-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(168,85,247,0.6);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 25px 60px rgba(168,85,247,0.4);
+  }
+  .delivery-card > * { position: relative; z-index: 1; }
+  .delivery-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 15px rgba(168,85,247,0.8));
+    animation: float 3.5s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .delivery-icon svg { width: 100%; height: 100%; }
+  .delivery-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 800;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+  }
+  .delivery-card p { font-size: 14px; color: #b8b8d0; line-height: 1.5; }
+
+  .delivery-details {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 30px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  }
+  .delivery-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .delivery-detail-row:last-child { border-bottom: none; }
+  .delivery-detail-label {
+    font-weight: 700;
+    font-size: 15px;
+    color: #c084fc;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .delivery-detail-label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c084fc, #60a5fa);
+    box-shadow: 0 0 10px rgba(192,132,252,0.8);
+  }
+  .delivery-detail-value {
+    font-size: 15px;
+    color: #d8d8e8;
+    text-align: right;
+  }
+
+  .delivery-cta {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .delivery-cta p {
+    font-size: 20px;
+    color: #d8d8e8;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  /* ===== КОНТАКТЫ ===== */
+  .contact-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 22px; padding: 45px 30px; text-align: center;
+    transition: all 0.4s;
+  }
+  .contact-box:hover { border-color: rgba(168,85,247,0.5); }
+  .contact-box p { margin-bottom: 25px; color: #c8c8d8; font-size: 17px; line-height: 1.8; }
+  .btn-contact {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    color: #fff; padding: 15px 32px; border-radius: 50px;
+    text-decoration: none; font-weight: 700; margin: 6px;
+    transition: all 0.3s; box-shadow: 0 8px 30px rgba(168,85,247,0.4);
+    font-size: 15px;
+  }
+  .btn-contact svg { width: 20px; height: 20px; }
+  .btn-contact:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 15px 45px rgba(168,85,247,0.7); }
+  .btn-contact.wa { background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+  .btn-contact.tg { background: linear-gradient(135deg, #229ED9, #0088cc); box-shadow: 0 8px 30px rgba(34,158,217,0.4); }
+
+  /* ===== ФОРМА ЗАКАЗА ===== */
+  .order-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 22px; padding: 40px 32px;
+    max-width: 700px; margin: 0 auto;
+  }
+  .form-section {
+    margin-bottom: 30px; padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .form-section:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+  .form-section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(90deg, #c084fc, #60a5fa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .form-section-title::before {
+    content: ''; width: 4px; height: 20px;
+    background: linear-gradient(180deg, #c084fc, #60a5fa);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(192,132,252,0.8);
+  }
+  .order-form label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: #d8d8e8; }
+  .order-form input[type="text"],
+  .order-form input[type="tel"],
+  .order-form textarea,
+  .order-form select {
+    width: 100%; padding: 14px 18px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px; margin-bottom: 18px;
+    font-size: 15px; font-family: inherit; color: #fff;
+    transition: all 0.3s; appearance: none;
+  }
+  .order-form select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c084fc' stroke-width='3' stroke-linecap='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+    padding-right: 45px;
+    cursor: pointer;
+  }
+  .order-form select option { background: #1a1a35; color: #fff; }
+  .order-form input::placeholder, .order-form textarea::placeholder { color: #7878a0; }
+  .order-form input:focus, .order-form textarea:focus, .order-form select:focus {
+    outline: none; border-color: #c084fc;
+    background: rgba(168,85,247,0.12);
+    box-shadow: 0 0 0 4px rgba(168,85,247,0.2);
+  }
+  .order-form textarea { resize: vertical; min-height: 100px; }
+
+  .file-upload {
+    position: relative; display: block; padding: 25px;
+    background: rgba(168,85,247,0.08);
+    border: 2px dashed rgba(192,132,252,0.5);
+    border-radius: 14px; text-align: center;
+    cursor: pointer; transition: all 0.3s; margin-bottom: 18px;
+  }
+  .file-upload:hover { border-color: #c084fc; background: rgba(168,85,247,0.15); box-shadow: 0 0 25px rgba(192,132,252,0.3); }
+  .file-upload input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .file-upload-icon { width: 44px; height: 44px; margin: 0 auto 10px; filter: drop-shadow(0 0 10px rgba(192,132,252,0.8)); }
+  .file-upload-text { font-size: 14px; color: #d8d8e8; font-weight: 600; }
+  .file-upload-hint { font-size: 12px; color: #9898b0; margin-top: 5px; }
+  .file-name { font-size: 13px; color: #c084fc; margin-top: 8px; font-weight: 700; }
+
+  .qty-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .qty-btn {
+    width: 46px; height: 46px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid rgba(192,132,252,0.5);
+    border-radius: 12px; color: #c084fc;
+    font-size: 24px; font-weight: 800; cursor: pointer;
+    transition: all 0.2s; font-family: inherit;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qty-btn:hover { background: rgba(168,85,247,0.3); border-color: #c084fc; box-shadow: 0 0 15px rgba(192,132,252,0.5); }
+  .qty-btn:active { transform: scale(0.95); }
+  .qty-input {
+    width: 90px !important; text-align: center;
+    font-size: 20px !important; font-weight: 800 !important;
+    color: #c084fc !important; margin-bottom: 0 !important;
+  }
+
+  .order-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff; border: none;
+    padding: 20px; border-radius: 50px;
+    font-size: 17px; font-weight: 900;
+    cursor: pointer; font-family: inherit;
+    transition: all 0.3s;
+    box-shadow: 0 10px 40px rgba(37,211,102,0.5);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .order-submit::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+  }
+  .order-submit:hover::before { left: 100%; }
+  .order-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 50px rgba(37,211,102,0.8); }
+  .order-submit svg { width: 24px; height: 24px; }
+
+  footer {
+    text-align: center; padding: 35px 20px; color: #7878a0; font-size: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06); margin-top: 50px;
+  }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .form-note {
+    font-size: 13px; color: #9898b0; text-align: center; margin-top: 15px; line-height: 1.6;
+  }
+  .form-note strong { color: #c084fc; }
+
+  @media (max-width: 600px) {
+    .header-inner { flex-direction: column; align-items: stretch; }
+    .logo { text-align: center; font-size: 26px; letter-spacing: 4px; }
+    nav { justify-content: center; }
+    nav button { font-size: 12px; padding: 7px 11px; }
+    .hero-title { font-size: 40px; letter-spacing: 4px; }
+    .hero-subtitle { font-size: 16px; }
+    .hero-tagline { font-size: 11px; padding: 6px 16px; }
+    h2 { font-size: 26px; }
+    .stat-num { font-size: 28px; }
+    .hero-btn { font-size: 14px; padding: 16px 32px; }
+    .hero-slide { width: 240px; height: 190px; }
+    .hero-track { gap: 25px; }
+    .mini-slide { width: 160px; height: 160px; }
+    .work-slide { width: 200px; height: 170px; }
+    .works-track { gap: 20px; }
+    .category-header { padding: 0 20px 15px; }
+    .mini-carousel { padding: 15px 20px 20px; gap: 15px; }
+    .order-form { padding: 28px 20px; }
+    .category-title .price { font-size: 13px; }
+    .reviews-wall { gap: 25px; }
+    .review-note { font-size: 18px; padding: 30px 22px 22px; }
+    .delivery-detail-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .delivery-detail-value { text-align: left; }
+    .delivery-card h3 { font-size: 17px; }
+    .delivery-details { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="stars" id="stars"></div>
+<div class="comets" id="comets"></div>
+<div class="particles" id="particles"></div>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">CASEBOX</div>
+    <nav>
+      <button onclick="showPage('home', this)" class="active">Главная</button>
+      <button onclick="showPage('catalog', this)">Каталог</button>
+      <button onclick="showPage('works', this)">Наши работы</button>
+      <button onclick="showPage('reviews', this)">Отзывы</button>
+      <button onclick="showPage('delivery', this)">Доставка</button>
+      <button onclick="showPage('contacts', this)">Контакты</button>
+      <button onclick="showPage('order', this)">Заказать</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== ГЛАВНАЯ ===== -->
+<div id="home" class="page active">
+  <div class="container">
+    <div class="hero-banner">
+      <div class="hero-tagline">Казань · Доставка по России</div>
+      <h1 class="hero-title">CASEBOX</h1>
+      <p class="hero-subtitle">Печатаем эмоции на кружках, бутылках, футболках и сувенирах. Яркий подарок или корпоративный мерч — сделаем с душой и быстро.</p>
+      <div class="hero-buttons">
+        <button class="hero-btn" onclick="showPage('order')">
+          Оставить заявку
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="hero-btn hero-btn-ghost" onclick="showPage('catalog')">Смотреть каталог</button>
+      </div>
+    </div>
+
+    <div class="hero-carousel">
+      <div class="hero-track" id="heroTrack"></div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="stat-num" data-count="500">0</div><div class="stat-label">довольных клиентов</div></div>
+      <div class="stat"><div class="stat-num" data-count="1200">0</div><div class="stat-label">изделий напечатано</div></div>
+      <div class="stat"><div class="stat-num" data-count="24">0</div><div class="stat-label">часа на заказ</div></div>
+    </div>
+
+    <div class="features">
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="f1"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+        <path d="M36 4L12 36h16l-4 24 24-32H32l4-24z" stroke="url(#f1)" stroke-width="3" stroke-linejoin="round" fill="rgba(168,85,247,0.15)"/></svg></div>
+        <h3>Быстро</h3><p>Изготовим за 1–2 дня</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="f2"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+        <path d="M32 8l24 14v20L32 56 8 42V22L32 8z" stroke="url(#f2)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M8 22l24 14 24-14M32 36v20" stroke="url(#f2)" stroke-width="3" opacity="0.6"/></svg></div>
+        <h3>Согласуем макет</h3><p>Покажем до печати</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="f3"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+        <path d="M4 24h40v24H4V24z" stroke="url(#f3)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M44 32h10l6 8v8H44V32z" stroke="url(#f3)" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="16" cy="52" r="5" stroke="url(#f3)" stroke-width="3"/>
+        <circle cx="48" cy="52" r="5" stroke="url(#f3)" stroke-width="3"/></svg></div>
+        <h3>Доставка</h3><p>По Казани и всей России</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="f4"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+        <path d="M32 6l8 18 20 2-15 14 4 20-17-10-17 10 4-20L4 26l20-2 8-18z" stroke="url(#f4)" stroke-width="3" stroke-linejoin="round" fill="rgba(168,85,247,0.15)"/></svg></div>
+        <h3>Премиум качество</h3><p>Яркие стойкие принты</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== КАТАЛОГ ===== -->
+<div id="catalog" class="page">
+  <div class="container">
+    <h2>Каталог услуг</h2>
+    <div id="catalogContainer"></div>
+  </div>
+</div>
+
+<!-- ===== НАШИ РАБОТЫ ===== -->
+<div id="works" class="page">
+  <div class="container">
+    <h2>Наши работы</h2>
+    <div class="works-row"><div class="works-track row1" id="worksRow1"></div></div>
+    <div class="works-row"><div class="works-track row2" id="worksRow2"></div></div>
+    <div class="works-row"><div class="works-track row3" id="worksRow3"></div></div>
+    <div class="works-row"><div class="works-track row4" id="worksRow4"></div></div>
+  </div>
+</div>
+
+<!-- ===== ОТЗЫВЫ ===== -->
+<div id="reviews" class="page">
+  <div class="container">
+    <h2>Что говорят клиенты</h2>
+    <div class="reviews-wall">
+
+      <div class="review-note">
+        <div class="review-note-text">Заказали 34 именные бутылочки для класса! После оплаты нам скинули макеты и после согласования быстро исполнили свой заказ. При обещанных 2-3 дня нам сделали за 1 день! Доставку помогли оформить через Яндекс доставку. Огромное спасибо, что быстро и качественно выполняете свою работу! Будем рекомендовать вас!</div>
+        <div class="review-note-author">— Евгения</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Огромное спасибо за заказ. Оперативно отвечали, быстро изготовили, все пришло аккуратно запаковано. Дети в восторге от именных бутылочек. Отличный вариант подарка для танцоров.</div>
+        <div class="review-note-author">— Ольга</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Трепетно и с большим терпением и любовью к своему делу согласовывали макет изделия! Оно того стоило! Вживую памятная тарелочка оказалась еще лучше! Спасибо большое за радость ❤️</div>
+        <div class="review-note-author">— Аделя</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Все прошло замечательно! Бутылки выполнены качественно, печать очень хорошая! Заказывали на выпускной детям. Остались очень довольны. Каждая бутылочка в коробочке с наклейкой, чтобы не перепутать ничего! Вообще супер! Исполнение быстрое, на все вопросы отвечают!</div>
+        <div class="review-note-author">— Айгуль</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Заказывали в сжатые сроки 170 именных бутылок с логотипом. Работали и день и ночь, в режиме и на связи 24/7. Помогли с отправкой. Все пришло в срок. Бутылки хорошего качества, принт яркий, четкий. Ошибок в ФИ не обнаружили. Детям очень понравилось и родители были довольны! Большое спасибо 🌹 Было приятно работать в команде ✊</div>
+        <div class="review-note-author">— ФСК «Мира»</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Хочется выразить огромную благодарность за качество заказа и скорость изготовления 👍🏻 просто здорово!!! Все как и хотелось ❤️ Спасибо огромное)</div>
+        <div class="review-note-author">— Екатерина</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Мой заказ выполнили в установленные сроки, объем работ был небольшой, услуга стоила вменяемых денег. Сотрудники общались культурно и вежливо. Типографию я выбрала, потому что меня устроила стоимость и сроки подготовки заказа.</div>
+        <div class="review-note-author">— Айгуль</div>
+      </div>
+
+      <div class="review-note">
+        <div class="review-note-text">Заказывали детям в класс, в качестве мини-подарков в честь Дня рождения ребёнка! 21 шт в течение двое суток и готово! Оперативность мощная! Большой плюс. Макет перед тем как нанести на кружки обязательно скидывался! Это тоже большой плюс. Даже корректировки внесли по макету — клиентоориентированность! Спасибо огромное!</div>
+        <div class="review-note-author">— Альбина</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== ДОСТАВКА ===== -->
+<div id="delivery" class="page">
+  <div class="container">
+    <h2>Доставка</h2>
+
+    <div class="delivery-info">
+      <p class="delivery-lead">
+        Отправляем заказы по всей России. Работаем с проверенными службами доставки — быстро, надёжно, с возможностью отслеживания.
+      </p>
+
+      <div class="delivery-grid">
+
+        <div class="delivery-card reveal">
+          <div class="delivery-icon">
+            <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="d1"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+            <path d="M8 20h36v26H8z" stroke="url(#d1)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M44 28h10l6 8v10H44V28z" stroke="url(#d1)" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="18" cy="50" r="5" stroke="url(#d1)" stroke-width="3"/>
+            <circle cx="48" cy="50" r="5" stroke="url(#d1)" stroke-width="3"/>
+            <path d="M8 32h36" stroke="url(#d1)" stroke-width="2" opacity="0.5"/></svg>
+          </div>
+          <h3>СДЭК</h3>
+          <p>Доставка до пункта выдачи или курьером до двери. Сроки: 2–7 дней по России.</p>
+        </div>
+
+        <div class="delivery-card reveal">
+          <div class="delivery-icon">
+            <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="d2"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+            <path d="M4 24h40v24H4z" stroke="url(#d2)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M44 32h10l6 8v8H44V32z" stroke="url(#d2)" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="16" cy="52" r="5" stroke="url(#d2)" stroke-width="3"/>
+            <circle cx="48" cy="52" r="5" stroke="url(#d2)" stroke-width="3"/></svg>
+          </div>
+          <h3>Почта России</h3>
+          <p>Доставка в любой уголок страны. Сроки: 3–14 дней в зависимости от региона.</p>
+        </div>
+
+        <div class="delivery-card reveal">
+          <div class="delivery-icon">
+            <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="d3"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+            <path d="M32 8l4 8h8l-6 6 2 9-8-4-8 4 2-9-6-6h8l4-8z" stroke="url(#d3)" stroke-width="3" stroke-linejoin="round" fill="rgba(168,85,247,0.15)"/>
+            <path d="M16 44c4 6 12 10 16 10s12-4 16-10" stroke="url(#d3)" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Яндекс Доставка</h3>
+          <p>Отправка через ПВЗ Яндекс Маркета по всей России. Поможем с оформлением.</p>
+        </div>
+
+        <div class="delivery-card reveal">
+          <div class="delivery-icon">
+            <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="d4"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+            <path d="M14 22h36v22H14z" stroke="url(#d4)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M22 22l4-10h12l4 10" stroke="url(#d4)" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="24" cy="44" r="5" stroke="url(#d4)" stroke-width="3"/>
+            <circle cx="40" cy="44" r="5" stroke="url(#d4)" stroke-width="3"/>
+            <path d="M14 32h36" stroke="url(#d4)" stroke-width="2" opacity="0.5"/></svg>
+          </div>
+          <h3>5Post</h3>
+          <p>Доставка до постаматов в магазинах «Пятёрочка» и других точках. Удобно и быстро.</p>
+        </div>
+
+        <div class="delivery-card reveal">
+          <div class="delivery-icon">
+            <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="d5"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+            <path d="M32 4l6 14 15 1-11 10 3 15-13-7-13 7 3-15-11-10 15-1 6-14z" stroke="url(#d5)" stroke-width="3" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Самовывоз в Казани</h3>
+          <p>Заберёте лично из нашей мастерской. Бесплатно. Адрес уточняется при заказе.</p>
+        </div>
+
+      </div>
+
+      <div class="delivery-details reveal">
+        <div class="delivery-detail-row">
+          <span class="delivery-detail-label">Стоимость доставки</span>
+          <span class="delivery-detail-value">Уточняется при оформлении заказа</span>
+        </div>
+        <div class="delivery-detail-row">
+          <span class="delivery-detail-label">Доставка по Казани</span>
+          <span class="delivery-detail-value">Самовывоз или Яндекс Доставка курьером. Поможем с оформлением</span>
+        </div>
+        <div class="delivery-detail-row">
+          <span class="delivery-detail-label">Отслеживание</span>
+          <span class="delivery-detail-value">Пришлём трек-номер сразу после отправки</span>
+        </div>
+        <div class="delivery-detail-row">
+          <span class="delivery-detail-label">Упаковка</span>
+          <span class="delivery-detail-value">Каждое изделие аккуратно упаковано</span>
+        </div>
+      </div>
+
+      <div class="delivery-cta reveal">
+        <p>Остались вопросы по доставке?</p>
+        <button class="hero-btn" onclick="showPage('order')">
+          Оформить заказ
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== КОНТАКТЫ ===== -->
+<div id="contacts" class="page">
+  <div class="container">
+    <h2>Контакты</h2>
+    <div class="contact-box reveal">
+      <p><strong style="color:#fff;font-size:20px;">CASEBOX</strong><br>г. Казань<br>Работаем по всей России</p>
+      <a href="tel:+79274996077" class="btn-contact">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+        +7 927 499-60-77
+      </a>
+      <a href="https://wa.me/79274996077" class="btn-contact wa">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.6.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.6.1-.25-.15-1.05-.4-2-1.25-.75-.65-1.25-1.5-1.4-1.75-.15-.25 0-.4.1-.5.1-.1.25-.3.35-.45.15-.15.2-.25.3-.45.1-.15.05-.35-.05-.5-.1-.15-.6-1.5-.85-2-.2-.5-.4-.45-.6-.45h-.5c-.15 0-.45.05-.7.3-.25.3-.9.9-.9 2.2 0 1.3.95 2.55 1.05 2.7.1.15 1.8 2.8 4.4 3.9.6.25 1.1.4 1.45.55.65.2 1.2.2 1.7.1.5-.05 1.7-.7 1.9-1.35.25-.7.25-1.25.15-1.35-.05-.15-.25-.2-.5-.35zM12 2a10 10 0 0 0-8.5 15.25L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://t.me/+79274996077" class="btn-contact tg">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M22 3L2 10.5l5 2 2 6 3-4 5 4 5-15.5zM9.5 13.5l.5 4 1.5-2.5-2-1.5z"/></svg>
+        Telegram
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЗАКАЗАТЬ ===== -->
+<div id="order" class="page">
+  <div class="container">
+    <h2>Оформление заказа</h2>
+    <div class="order-form reveal">
+      <form id="orderForm">
+
+        <div class="form-section">
+          <div class="form-section-title">1. Что заказать</div>
+
+          <label>Выберите товар</label>
+          <select id="productSelect" required>
+            <option value="">— Выберите из списка —</option>
+            <option value="Бутылки для воды 500 мл">Бутылки для воды 500 мл</option>
+            <option value="Кружки белые Premium">Кружки белые Premium</option>
+            <option value="Необычные кружки">Необычные кружки</option>
+            <option value="Тарелки сувенирные для учителей (с рисунком детей)">Тарелки сувенирные (рисунок детей)</option>
+            <option value="Тарелки сувенирные для учителей (с фото)">Тарелки сувенирные (с фото)</option>
+            <option value="Тарелки с фото/картинками">Тарелки с фото / картинками</option>
+            <option value="Футболки и худи с принтом">Футболки и худи с принтом</option>
+            <option value="Носки с принтом">Носки с принтом</option>
+            <option value="Подушки с фото/картинками">Подушки с фото / картинками</option>
+            <option value="Бейсболка с печатью">Бейсболка с печатью</option>
+            <option value="Печать на ручках и блокнотах">Печать на ручках и блокнотах</option>
+            <option value="Печать на шопперах">Печать на шопперах</option>
+            <option value="other">— Другое (укажу ниже) —</option>
+          </select>
+
+          <div id="otherProductWrap" style="display:none;">
+            <label>Что именно нужно?</label>
+            <input type="text" id="otherProduct" placeholder="Опишите товар (например: термос, чехол, брелок)">
+          </div>
+
+          <label>Количество</label>
+          <div class="qty-wrap">
+            <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+            <input type="text" class="qty-input" id="qtyInput" value="1" readonly>
+            <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+
+          <label>Опишите дизайн</label>
+          <textarea id="designDesc" placeholder="Что напечатать? Текст, надпись, логотип, фото, пожелания по цвету и стилю..."></textarea>
+
+          <label>Пример фото (по желанию)</label>
+          <label class="file-upload">
+            <input type="file" id="fileInput" accept="image/*">
+            <div class="file-upload-icon">
+              <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="upIco"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+              <path d="M32 10v30M18 24l14-14 14 14" stroke="url(#upIco)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 46v6a4 4 0 0 0 4 4h36a4 4 0 0 0 4-4v-6" stroke="url(#upIco)" stroke-width="4" stroke-linecap="round"/></svg>
+            </div>
+            <div class="file-upload-text">Нажмите, чтобы выбрать фото</div>
+            <div class="file-upload-hint">JPG, PNG · до 10 МБ</div>
+            <div class="file-name" id="fileName"></div>
+          </label>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">2. Ваши контакты</div>
+
+          <label>Ваше имя *</label>
+          <input type="text" id="clientName" placeholder="Как к вам обращаться" required>
+
+          <label>Телефон или WhatsApp *</label>
+          <input type="tel" id="clientPhone" placeholder="+7 ___ ___-__-__" required>
+
+          <label>Город</label>
+          <input type="text" id="clientCity" placeholder="Например: Казань">
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">3. Отправить заявку</div>
+          <button type="submit" class="order-submit">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.6.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.6.1-.25-.15-1.05-.4-2-1.25-.75-.65-1.25-1.5-1.4-1.75-.15-.25 0-.4.1-.5.1-.1.25-.3.35-.45.15-.15.2-.25.3-.45.1-.15.05-.35-.05-.5-.1-.15-.6-1.5-.85-2-.2-.5-.4-.45-.6-.45h-.5c-.15 0-.45.05-.7.3-.25.3-.9.9-.9 2.2 0 1.3.95 2.55 1.05 2.7.1.15 1.8 2.8 4.4 3.9.6.25 1.1.4 1.45.55.65.2 1.2.2 1.7.1.5-.05 1.7-.7 1.9-1.35.25-.7.25-1.25.15-1.35-.05-.15-.25-.2-.5-.35zM12 2a10 10 0 0 0-8.5 15.25L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+            Отправить в WhatsApp
+          </button>
+          <p class="form-note">Откроется WhatsApp с готовым текстом заявки. <strong>Прикрепите фото примера прямо в чате</strong> — так мы сразу всё увидим и свяжемся с вами.</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 CASEBOX · Казань · Нанесение принтов
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = '79274996077';
+
+  const heroPhotos = [
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000100179.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000097119.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000095980.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000095999.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000093373.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000093037.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000090169.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000081312.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000078808.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000100184.jpg'
+  ];
+
+  const catalogData = [
+    { title: 'Бутылки для воды 500 мл', price: 'Цену уточняем (зависит от количества)', icon: 'bottle', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260421145317.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260428130316.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260409_125058.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260321115212.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260411125054.jpg'
+    ]},
+    { title: 'Кружки белые Premium', price: 'Цену уточняем (зависит от количества)', icon: 'cup', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20250726145530.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213173241.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260115111401.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251218144119.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1703699500397.jpg'
+    ]},
+    { title: 'Необычные кружки', price: 'Цену уточняем (зависит от количества)', icon: 'cup', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20241101140157.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/Screenshot_2025-03-04-20-54-31-31_5228fc5d2ad2c517ecb981db677d9e34.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213154645.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/avito-1771069016137-shot.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260604125035.jpg'
+    ]},
+    { title: 'Тарелки сувенирные для учителей / воспитателей', price: 'Цену уточняем (зависит от количества)', icon: 'plate', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260925_135434_0988.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260604_175734.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260427213557.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260517_112855.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260519_145103_715.jpeg'
+    ]},
+    { title: 'Тарелки с фото / картинками', price: 'Цену уточняем (зависит от количества)', icon: 'plate', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250702_200214_0320.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260613_030322.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251108_155722_0780.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000100722.jpg'
+    ]},
+    { title: 'Футболки и худи с принтом', price: 'Цену уточняем (зависит от количества)', icon: 'tshirt', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250723_172806_0795.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250702_200414.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250721_132627_0634.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000100721.jpg'
+    ]},
+    { title: 'Носки с принтом', price: 'Цену уточняем (зависит от количества)', icon: 'socks', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251127174339.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251127_183019.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251225_172937.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251225164942.jpg'
+    ]},
+    { title: 'Подушки с фото / картинками', price: 'Цену уточняем (зависит от количества)', icon: 'pillow', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251220191109.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251220191055.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250702_200233_0649.jpg'
+    ]},
+    { title: 'Бейсболка с печатью', price: 'Цену уточняем (зависит от количества)', icon: 'cap', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000094746.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000094747.jpg'
+    ]},
+    { title: 'Печать на ручках и блокнотах', price: 'Цену уточняем (зависит от количества)', icon: 'pen', photos: [
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260127_183006.jpg',
+      'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000094411.jpg'
+    ]},
+    { title: 'Печать на шопперах', price: 'Цену уточняем (зависит от количества)', icon: 'bag', photos: ['', '', ''] }
+  ];
+
+  const worksRow1 = [
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260925_135407_0433.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260925_135418_0017.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260906_095758.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/hPq4VbXfQk_OX2KmOJ_8164-wL6c0h_9IPY7wCfDq0ZaEX6GnYmHA89xKCkOTC1HD7jUfdHXuwA91wHoxVdGPx7_.webp',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260522130630.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260423_172427.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260421144920.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/avito-1775923851218-shot.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260409_125058442efaff60fedd1f.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260402_101851.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260321114917.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260410151436.jpg'
+  ];
+
+  const worksRow2 = [
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20250726145509.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG-20250916-WA0001.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251218144119c12c76479d0503fb.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260115111412.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213173309.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260303140956.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260519130427.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260604125010.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260902_205949.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260825_164409.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/Screenshot_2026-10-05-17-15-43-74_5228fc5d2ad2c517ecb981db677d9e34.jpg'
+  ];
+
+  const worksRow3 = [
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20240627_121615.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20241229083942.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/Screenshot_2025-02-20-20-20-40-02_5228fc5d2ad2c517ecb981db677d9e34.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260213185636.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/avito-1772044013334-shot.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260605141416.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1791284348762.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20251108_155722_0780caa391a578177bd3.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250716_185410.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20241217085054.jpg'
+  ];
+
+  const worksRow4 = [
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/1000100721252a15d59126a3b5.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260604_1757342a1bc63995bb2b0d.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20260530131302.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260519_145103_253.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260517_112930.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260402_102503.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251225165009.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG20251127174310.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250728_130408.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20250723_172806_0795455687306922cf0b.jpg',
+    'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/12/IMG_20260127_183006d0f194e06e173b1c.jpg'
+  ];
+
+  const icons = {
+    cup: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-cup"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M12 14h32v36a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V14z" stroke="url(#i-cup)" stroke-width="3"/><path d="M44 22h6a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6h-6" stroke="url(#i-cup)" stroke-width="3"/></svg>`,
+    bottle: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-bot"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M26 8h12v8l4 6v30a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V22l4-6V8z" stroke="url(#i-bot)" stroke-width="3"/></svg>`,
+    plate: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-plt"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><circle cx="32" cy="32" r="24" stroke="url(#i-plt)" stroke-width="3"/><circle cx="32" cy="32" r="14" stroke="url(#i-plt)" stroke-width="2" opacity="0.6"/></svg>`,
+    tshirt: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-tsh"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M22 10l-10 6 4 10 6-2v30h20V24l6 2 4-10-10-6-5 4h-10l-5-4z" stroke="url(#i-tsh)" stroke-width="3"/></svg>`,
+    cap: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-cap"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M10 40a22 22 0 0 1 44 0v6H10v-6z" stroke="url(#i-cap)" stroke-width="3"/><path d="M54 42h6a2 2 0 0 1 0 4h-6" stroke="url(#i-cap)" stroke-width="3"/></svg>`,
+    socks: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-sock"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M20 8h16v22l10 10a8 8 0 0 1-11 11l-13-13a8 8 0 0 1-2-5V8z" stroke="url(#i-sock)" stroke-width="3" stroke-linejoin="round"/><path d="M20 16h16" stroke="url(#i-sock)" stroke-width="2" opacity="0.6"/></svg>`,
+    pillow: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-pil"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M14 14 Q10 10 14 8 Q32 4 50 8 Q54 10 50 14 Q56 32 50 50 Q54 54 50 56 Q32 60 14 56 Q10 54 14 50 Q8 32 14 14 Z" stroke="url(#i-pil)" stroke-width="3" stroke-linejoin="round"/></svg>`,
+    pen: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-pen"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M44 6l14 14-30 30-14 4 4-14L44 6z" stroke="url(#i-pen)" stroke-width="3" stroke-linejoin="round"/><path d="M36 14l14 14" stroke="url(#i-pen)" stroke-width="2" opacity="0.6"/><path d="M14 54l-6 6" stroke="url(#i-pen)" stroke-width="3" stroke-linecap="round"/></svg>`,
+    bag: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-bag"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M10 20h44v36H10z" stroke="url(#i-bag)" stroke-width="3" stroke-linejoin="round"/><path d="M22 20v-6a10 10 0 0 1 20 0v6" stroke="url(#i-bag)" stroke-width="3" stroke-linecap="round"/><path d="M10 32h44" stroke="url(#i-bag)" stroke-width="2" opacity="0.5"/></svg>`
+  };
+
+  /* Пауза фоновых анимаций при скролле */
+  let scrollTimer;
+  window.addEventListener('scroll', function() {
+    document.body.classList.add('scrolling');
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      document.body.classList.remove('scrolling');
+    }, 150);
+  }, { passive: true });
+
+  /* ПЛАВНЫЙ JS-ДВИЖОК КАРУСЕЛЕЙ (requestAnimationFrame) */
+  function startMarquee(track, direction, durationSec) {
+    let pos = 0;
+    let last = performance.now();
+    let paused = false;
+    let visible = true;
+
+    // Пауза при наведении
+    const row = track.parentElement;
+    row.addEventListener('mouseenter', () => { paused = true; });
+    row.addEventListener('mouseleave', () => { paused = false; });
+    row.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    row.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 800); }, { passive: true });
+
+    // Не анимируем, если не видно (для страницы «Наши работы»)
+    const observer = new IntersectionObserver((entries) => {
+      visible = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    observer.observe(track);
+
+    function animate(now) {
+      const dt = Math.min(now - last, 50); // ограничиваем прыжки при переключении вкладок
+      last = now;
+
+      if (!paused && visible) {
+        const speed = track.scrollWidth / 2 / durationSec / 1000; // пикселей в мс
+        pos += (direction === 'left' ? -1 : 1) * speed * dt;
+      }
+
+      const half = track.scrollWidth / 2;
+      if (half > 0) {
+        if (pos <= -half) pos += half;
+        if (pos >= 0 && direction === 'right') pos -= half;
+      }
+
+      track.style.transform = `translate3d(${pos}px, 0, 0)`;
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function createStars() {
+    const box = document.getElementById('stars');
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      s.style.animationDelay = (Math.random() * 3) + 's';
+      const colors = ['#fff', '#c084fc', '#60a5fa', '#f472b6'];
+      s.style.background = colors[Math.floor(Math.random() * colors.length)];
+      box.appendChild(s);
+    }
+  }
+
+  function createComets() {
+    const box = document.getElementById('comets');
+    for (let i = 0; i < 3; i++) {
+      const c = document.createElement('div');
+      c.className = 'comet';
+      c.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      c.style.animationDelay = (Math.random() * 18) + 's';
+      c.style.top = (Math.random() * 40 - 20) + '%';
+      box.appendChild(c);
+    }
+  }
+
+  function createParticles() {
+    const box = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 6 + 2;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+      p.style.animationDelay = (Math.random() * 20) + 's';
+      box.appendChild(p);
+    }
+  }
+
+  function createHeroCarousel() {
+    const track = document.getElementById('heroTrack');
+    const iconNames = ['cup', 'plate', 'tshirt', 'bottle', 'cap'];
+    const slidesHTML = heroPhotos.map((url, i) => {
+      if (url) return `<div class="hero-slide"><img src="${url}" alt="Работа ${i+1}" loading="lazy"></div>`;
+      return `<div class="hero-slide">${icons[iconNames[i % iconNames.length]]}<span>Фото ${i+1}</span></div>`;
+    }).join('');
+    track.innerHTML = slidesHTML + slidesHTML;
+    startMarquee(track, 'left', 60);
+  }
+
+  function createCatalog() {
+    const container = document.getElementById('catalogContainer');
+    container.innerHTML = catalogData.map(cat => {
+      const slides = cat.photos.map((url, i) => {
+        if (url) return `<div class="mini-slide"><img src="${url}" alt="${cat.title} ${i+1}" loading="lazy"></div>`;
+        return `<div class="mini-slide">${icons[cat.icon]}<span>Фото ${i+1}</span></div>`;
+      }).join('');
+      return `<div class="catalog-category reveal">
+        <div class="category-header">
+          <div class="category-icon">${icons[cat.icon]}</div>
+          <div class="category-title"><h3>${cat.title}</h3><div class="price">${cat.price}</div></div>
+        </div>
+        <div class="mini-carousel">${slides}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function createWorks() {
+    const iconNames = ['cup', 'plate', 'tshirt', 'bottle', 'cap'];
+    const configs = [
+      { id: 'worksRow1', photos: worksRow1, dir: 'left',  duration: 55 },
+      { id: 'worksRow2', photos: worksRow2, dir: 'right', duration: 60 },
+      { id: 'worksRow3', photos: worksRow3, dir: 'left',  duration: 50 },
+      { id: 'worksRow4', photos: worksRow4, dir: 'right', duration: 45 }
+    ];
+    configs.forEach(({ id, photos, dir, duration }) => {
+      const track = document.getElementById(id);
+      const slides = photos.map((url, i) => {
+        if (url) return `<div class="work-slide"><img src="${url}" alt="Работа ${i+1}" loading="lazy"></div>`;
+        return `<div class="work-slide">${icons[iconNames[i % iconNames.length]]}<span>Работа ${i+1}</span></div>`;
+      }).join('');
+      track.innerHTML = slides + slides;
+      startMarquee(track, dir, duration);
+    });
+  }
+
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(revealOnScroll, 100);
+  }
+
+  function revealOnScroll() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+  function animateCounters() {
+    document.querySelectorAll('.stat-num').forEach(el => {
+      const target = +el.dataset.count;
+      let current = 0;
+      const step = Math.ceil(target / 60);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current + (target >= 100 ? '+' : '');
+      }, 25);
+    });
+  }
+  setTimeout(animateCounters, 500);
+
+  function changeQty(delta) {
+    const input = document.getElementById('qtyInput');
+    let val = parseInt(input.value) || 1;
+    val += delta;
+    if (val < 1) val = 1;
+    input.value = val;
+  }
+
+  document.getElementById('productSelect').addEventListener('change', function() {
+    const wrap = document.getElementById('otherProductWrap');
+    wrap.style.display = this.value === 'other' ? 'block' : 'none';
+  });
+
+  document.getElementById('fileInput').addEventListener('change', function() {
+    document.getElementById('fileName').textContent = this.files[0] ? '✓ ' + this.files[0].name : '';
+  });
+
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const productSelect = document.getElementById('productSelect').value;
+    let product = productSelect;
+    if (productSelect === 'other') {
+      product = document.getElementById('otherProduct').value || 'Другое';
+    }
+
+    const qty = document.getElementById('qtyInput').value;
+    const design = document.getElementById('designDesc').value || '—';
+    const fileName = document.getElementById('fileName').textContent.replace('✓ ', '') || '—';
+    const name = document.getElementById('clientName').value;
+    const phone = document.getElementById('clientPhone').value;
+    const city = document.getElementById('clientCity').value || '—';
+
+    const message = 
+`🛒 *НОВАЯ ЗАЯВКА CASEBOX*
+
+📦 *Товар:* ${product}
+🔢 *Количество:* ${qty} шт.
+🎨 *Дизайн:* ${design}
+📎 *Фото примера:* ${fileName}
+
+👤 *Имя:* ${name}
+📞 *Телефон:* ${phone}
+🏙 *Город:* ${city}
+
+_Фото пример отправлю следующим сообщением_`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+
+  createStars();
+  createComets();
+  createParticles();
+  createHeroCarousel();
+  createCatalog();
+  createWorks();
+  setTimeout(revealOnScroll, 300);
+</script>
+
+</body>
+</html>
