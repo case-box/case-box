@@ -86,7 +86,6 @@
     100% { transform: translateY(-100px) scale(1) translateZ(0); opacity: 0; }
   }
 
-  /* Пауза фоновых анимаций при скролле */
   body.scrolling .bg-glow,
   body.scrolling .star,
   body.scrolling .comet,
@@ -246,7 +245,7 @@
   }
   .hero-btn-ghost:hover { background: rgba(192,132,252,0.15); border-color: #c084fc; box-shadow: 0 0 30px rgba(192,132,252,0.5); }
 
-  /* ===== КОСМИЧЕСКАЯ КАРУСЕЛЬ (без CSS-анимации — двигает JS) ===== */
+  /* ===== КОСМИЧЕСКАЯ КАРУСЕЛЬ ===== */
   .hero-carousel {
     margin: 40px 0 70px;
     padding: 60px 0;
@@ -275,7 +274,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(59,130,246,0.2));
     box-shadow:
       0 8px 16px rgba(0,0,0,0.35),
       0 20px 40px rgba(0,0,0,0.3),
@@ -284,11 +282,29 @@
     transition: filter 0.4s;
     will-change: transform;
     transform: translateZ(0);
+    /* Скелетон-мерцание */
+    background: linear-gradient(
+      135deg,
+      rgba(168,85,247,0.15) 0%,
+      rgba(59,130,246,0.15) 50%,
+      rgba(168,85,247,0.15) 100%
+    );
+    background-size: 200% 200%;
+    animation: skeletonShine 2s ease-in-out infinite, floatY 4s ease-in-out infinite;
+  }
+  .hero-slide.has-image {
+    background: none;
+    animation: floatY 4s ease-in-out infinite;
   }
 
   .hero-slide:nth-child(3n) { animation-delay: 0.7s; }
   .hero-slide:nth-child(3n+1) { animation-delay: 1.4s; }
   .hero-slide:nth-child(3n+2) { animation-delay: 0s; }
+
+  @keyframes skeletonShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 
   @keyframes floatY {
     0%, 100% { transform: translateY(0) rotateZ(0deg) translateZ(0); }
@@ -300,8 +316,10 @@
     object-fit: cover;
     border-radius: 22px;
     display: block;
-    transition: transform 0.6s;
+    transition: transform 0.6s, opacity 0.5s ease;
+    opacity: 0;
   }
+  .hero-slide img.loaded { opacity: 1; }
 
   .hero-slide::before {
     content: '';
@@ -322,7 +340,7 @@
     filter: drop-shadow(0 0 12px rgba(192,132,252,0.8));
   }
 
-  /* ===== КАРУСЕЛИ "НАШИ РАБОТЫ" (без CSS-анимации — двигает JS) ===== */
+  /* ===== КАРУСЕЛИ "НАШИ РАБОТЫ" ===== */
   .works-row {
     margin: 35px 0; overflow: hidden; position: relative;
     padding: 30px 0;
@@ -342,21 +360,35 @@
     width: 240px; height: 200px; flex-shrink: 0;
     border-radius: 18px; overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(59,130,246,0.18));
     display: flex; align-items: center; justify-content: center;
     box-shadow:
       0 6px 12px rgba(0,0,0,0.3),
       0 15px 30px rgba(0,0,0,0.28),
       0 25px 50px rgba(168,85,247,0.2);
     transform: translateZ(0);
+    /* Скелетон */
+    background: linear-gradient(
+      135deg,
+      rgba(168,85,247,0.12) 0%,
+      rgba(59,130,246,0.12) 50%,
+      rgba(168,85,247,0.12) 100%
+    );
+    background-size: 200% 200%;
+    animation: skeletonShine 2s ease-in-out infinite;
+  }
+  .work-slide.has-image {
+    background: none;
+    animation: none;
   }
   .work-slide img {
     width: 100%; height: 100%;
     object-fit: cover;
     border-radius: 18px;
     display: block;
-    transition: transform 0.5s;
+    transition: transform 0.5s, opacity 0.5s ease;
+    opacity: 0;
   }
+  .work-slide img.loaded { opacity: 1; }
   .work-slide::before {
     content: '';
     position: absolute;
@@ -393,21 +425,35 @@
     width: 190px; height: 190px; flex-shrink: 0;
     border-radius: 18px; overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(59,130,246,0.18));
     display: flex; align-items: center; justify-content: center;
     box-shadow:
       0 5px 10px rgba(0,0,0,0.3),
       0 12px 24px rgba(0,0,0,0.28),
       0 20px 40px rgba(168,85,247,0.18);
     transition: transform 0.3s;
+    /* Скелетон */
+    background: linear-gradient(
+      135deg,
+      rgba(168,85,247,0.12) 0%,
+      rgba(59,130,246,0.12) 50%,
+      rgba(168,85,247,0.12) 100%
+    );
+    background-size: 200% 200%;
+    animation: skeletonShine 2s ease-in-out infinite;
+  }
+  .mini-slide.has-image {
+    background: none;
+    animation: none;
   }
   .mini-slide img {
     width: 100%; height: 100%;
     object-fit: cover;
     border-radius: 18px;
     display: block;
-    transition: transform 0.4s;
+    transition: transform 0.4s, opacity 0.5s ease;
+    opacity: 0;
   }
+  .mini-slide img.loaded { opacity: 1; }
   .mini-slide::before {
     content: '';
     position: absolute;
@@ -850,6 +896,53 @@
   }
   .form-note strong { color: #c084fc; }
 
+  /* ===== ОПТИМИЗАЦИЯ ДЛЯ ТЕЛЕФОНОВ ===== */
+  @media (max-width: 768px) {
+    .hero-slide,
+    .work-slide,
+    .hero-slide:nth-child(3n),
+    .hero-slide:nth-child(3n+1),
+    .hero-slide:nth-child(3n+2) {
+      animation: none !important;
+      will-change: auto;
+    }
+    .hero-slide.has-image {
+      animation: none !important;
+    }
+
+    .hero-btn {
+      animation: none !important;
+      will-change: auto;
+    }
+    .hero-btn svg {
+      animation: none !important;
+    }
+
+    .feature-icon,
+    .category-icon,
+    .delivery-icon {
+      animation: none !important;
+      will-change: auto;
+    }
+
+    .hero-banner::before {
+      animation: none !important;
+    }
+
+    .hero-slide,
+    .work-slide,
+    .mini-slide {
+      box-shadow:
+        0 6px 12px rgba(0,0,0,0.35),
+        0 15px 30px rgba(168,85,247,0.2) !important;
+    }
+
+    header {
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+  }
+
   @media (max-width: 600px) {
     .header-inner { flex-direction: column; align-items: stretch; }
     .logo { text-align: center; font-size: 26px; letter-spacing: 4px; }
@@ -1240,6 +1333,8 @@
 <script>
   const WHATSAPP_NUMBER = '79274996077';
 
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
   const heroPhotos = [
     'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000100179.jpg',
     'https://fs.oblakoteka.ru/d.fotovssylku.ru/2026/10/11/1000097119.jpg',
@@ -1391,35 +1486,68 @@
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function() {
       document.body.classList.remove('scrolling');
-    }, 150);
+    }, 200);
   }, { passive: true });
 
-  /* ПЛАВНЫЙ JS-ДВИЖОК КАРУСЕЛЕЙ (requestAnimationFrame) */
+  window.pauseAllAnimations = function() {
+    document.body.classList.add('paused');
+    setTimeout(() => {
+      document.body.classList.remove('paused');
+    }, 600);
+  };
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      document.body.classList.add('paused');
+    } else {
+      document.body.classList.remove('paused');
+    }
+  });
+
+  /* Красивое появление фото по мере загрузки */
+  function attachImageLoad(container) {
+    const images = container.querySelectorAll('img');
+    images.forEach(img => {
+      const parent = img.parentElement;
+      if (img.complete && img.naturalHeight > 0) {
+        img.classList.add('loaded');
+        parent.classList.add('has-image');
+      } else {
+        img.addEventListener('load', function() {
+          img.classList.add('loaded');
+          parent.classList.add('has-image');
+        }, { once: true });
+        img.addEventListener('error', function() {
+          img.style.display = 'none';
+        }, { once: true });
+      }
+    });
+  }
+
+  /* ПЛАВНЫЙ JS-ДВИЖОК КАРУСЕЛЕЙ */
   function startMarquee(track, direction, durationSec) {
     let pos = 0;
     let last = performance.now();
     let paused = false;
     let visible = true;
 
-    // Пауза при наведении
     const row = track.parentElement;
     row.addEventListener('mouseenter', () => { paused = true; });
     row.addEventListener('mouseleave', () => { paused = false; });
     row.addEventListener('touchstart', () => { paused = true; }, { passive: true });
     row.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 800); }, { passive: true });
 
-    // Не анимируем, если не видно (для страницы «Наши работы»)
     const observer = new IntersectionObserver((entries) => {
       visible = entries[0].isIntersecting;
     }, { threshold: 0 });
     observer.observe(track);
 
     function animate(now) {
-      const dt = Math.min(now - last, 50); // ограничиваем прыжки при переключении вкладок
+      const dt = Math.min(now - last, 50);
       last = now;
 
       if (!paused && visible) {
-        const speed = track.scrollWidth / 2 / durationSec / 1000; // пикселей в мс
+        const speed = track.scrollWidth / 2 / durationSec / 1000;
         pos += (direction === 'left' ? -1 : 1) * speed * dt;
       }
 
@@ -1437,7 +1565,8 @@
 
   function createStars() {
     const box = document.getElementById('stars');
-    for (let i = 0; i < 60; i++) {
+    const count = isMobile ? 25 : 60;
+    for (let i = 0; i < count; i++) {
       const s = document.createElement('div');
       s.className = 'star';
       const size = Math.random() * 2.5 + 0.5;
@@ -1455,7 +1584,8 @@
 
   function createComets() {
     const box = document.getElementById('comets');
-    for (let i = 0; i < 3; i++) {
+    const count = isMobile ? 2 : 3;
+    for (let i = 0; i < count; i++) {
       const c = document.createElement('div');
       c.className = 'comet';
       c.style.animationDuration = (Math.random() * 8 + 12) + 's';
@@ -1467,7 +1597,8 @@
 
   function createParticles() {
     const box = document.getElementById('particles');
-    for (let i = 0; i < 20; i++) {
+    const count = isMobile ? 8 : 20;
+    for (let i = 0; i < count; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       const size = Math.random() * 6 + 2;
@@ -1488,6 +1619,7 @@
       return `<div class="hero-slide">${icons[iconNames[i % iconNames.length]]}<span>Фото ${i+1}</span></div>`;
     }).join('');
     track.innerHTML = slidesHTML + slidesHTML;
+    attachImageLoad(track);
     startMarquee(track, 'left', 60);
   }
 
@@ -1506,6 +1638,7 @@
         <div class="mini-carousel">${slides}</div>
       </div>`;
     }).join('');
+    attachImageLoad(container);
   }
 
   function createWorks() {
@@ -1523,16 +1656,19 @@
         return `<div class="work-slide">${icons[iconNames[i % iconNames.length]]}<span>Работа ${i+1}</span></div>`;
       }).join('');
       track.innerHTML = slides + slides;
+      attachImageLoad(track);
       startMarquee(track, dir, duration);
     });
   }
 
   function showPage(id, btn) {
+    window.pauseAllAnimations();
+
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
     setTimeout(revealOnScroll, 100);
   }
 
@@ -1619,4 +1755,4 @@ _Фото пример отправлю следующим сообщением_
 </script>
 
 </body>
-</html>
+         </html>
