@@ -9,7 +9,7 @@
 <meta name="author" content="DCASEBOX">
 <meta name="robots" content="index, follow">
 
-<!-- Open Graph (для WhatsApp, Telegram, VK) -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://case-box.github.io/case-box/">
 <meta property="og:title" content="DCASEBOX — печать принтов в Казани">
@@ -24,10 +24,9 @@
 <meta name="twitter:description" content="Кружки, бутылки, футболки и сувениры с вашим принтом. Доставка по России.">
 <meta name="twitter:image" content="https://iili.io/nW9yx8g.jpg">
 
-<!-- Favicon (встроенный SVG) -->
+<!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c084fc'/%3E%3Cstop offset='100%25' stop-color='%2360a5fa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%23141428'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='54' font-weight='900' text-anchor='middle' fill='url(%23g)'%3EDC%3C/text%3E%3C/svg%3E">
 
-<!-- Цвет адресной строки на мобилках -->
 <meta name="theme-color" content="#141428">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Montserrat:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -507,7 +506,7 @@
   }
   .stat-label { font-size: 14px; color: #b8b8d0; margin-top: 6px; }
 
-  /* ===== ПРЕИМУЩЕСТВА (сетка 3+2 на ПК) ===== */
+  /* ===== ПРЕИМУЩЕСТВА ===== */
   .features { 
     display: grid; 
     grid-template-columns: repeat(6, 1fr); 
@@ -576,32 +575,7 @@
     line-height: 1.5;
   }
 
-  .category-order-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 14px;
-    padding: 10px 22px;
-    background: linear-gradient(135deg, #a855f7, #3b82f6);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-family: inherit;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 6px 20px rgba(168,85,247,0.4);
-    text-transform: uppercase;
-  }
-  .category-order-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(168,85,247,0.7);
-  }
-  .category-order-btn svg { width: 16px; height: 16px; }
-
-  /* ===== ОТЗЫВЫ — ЗАПИСКИ ===== */
+  /* ===== ОТЗЫВЫ ===== */
   .reviews-wall {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -691,41 +665,26 @@
   }
 
   /* ===== ДОСТАВКА ===== */
-  .delivery-info {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .delivery-info { max-width: 900px; margin: 0 auto; }
   .delivery-lead {
-    text-align: center;
-    font-size: 17px;
-    color: #c8c8d8;
-    margin-bottom: 40px;
-    line-height: 1.7;
+    text-align: center; font-size: 17px; color: #c8c8d8;
+    margin-bottom: 40px; line-height: 1.7;
   }
   .delivery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
-    margin-bottom: 40px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px; margin-bottom: 40px;
   }
   .delivery-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 22px;
-    padding: 30px 24px;
-    text-align: center;
-    transition: all 0.4s;
-    position: relative;
-    overflow: hidden;
+    border-radius: 22px; padding: 30px 24px; text-align: center;
+    transition: all 0.4s; position: relative; overflow: hidden;
     box-shadow: 0 6px 15px rgba(0,0,0,0.25), 0 15px 35px rgba(168,85,247,0.15);
   }
   .delivery-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(59,130,246,0.2));
-    opacity: 0;
-    transition: opacity 0.4s;
+    opacity: 0; transition: opacity 0.4s;
   }
   .delivery-card:hover::before { opacity: 1; }
   .delivery-card:hover {
@@ -735,78 +694,44 @@
   }
   .delivery-card > * { position: relative; z-index: 1; }
   .delivery-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 70px; height: 70px; margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center;
     filter: drop-shadow(0 0 15px rgba(168,85,247,0.8));
     animation: float 3.5s ease-in-out infinite;
-    will-change: transform;
-    transform: translateZ(0);
+    will-change: transform; transform: translateZ(0);
   }
   .delivery-icon svg { width: 100%; height: 100%; }
   .delivery-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #fff;
-    font-weight: 800;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 1px;
+    font-size: 20px; margin-bottom: 10px; color: #fff; font-weight: 800;
+    font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
   }
   .delivery-card p { font-size: 14px; color: #b8b8d0; line-height: 1.5; }
 
   .delivery-details {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 22px;
-    padding: 30px 32px;
-    margin-bottom: 40px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border-radius: 22px; padding: 30px 32px;
+    margin-bottom: 40px; box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   }
   .delivery-detail-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 16px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px; padding: 16px 0;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }
   .delivery-detail-row:last-child { border-bottom: none; }
   .delivery-detail-label {
-    font-weight: 700;
-    font-size: 15px;
-    color: #c084fc;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-weight: 700; font-size: 15px; color: #c084fc; white-space: nowrap;
+    display: flex; align-items: center; gap: 8px;
   }
   .delivery-detail-label::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
     background: linear-gradient(135deg, #c084fc, #60a5fa);
     box-shadow: 0 0 10px rgba(192,132,252,0.8);
   }
-  .delivery-detail-value {
-    font-size: 15px;
-    color: #d8d8e8;
-    text-align: right;
-  }
+  .delivery-detail-value { font-size: 15px; color: #d8d8e8; text-align: right; }
 
-  .delivery-cta {
-    text-align: center;
-    padding: 30px 20px;
-  }
-  .delivery-cta p {
-    font-size: 20px;
-    color: #d8d8e8;
-    margin-bottom: 25px;
-    font-weight: 600;
-  }
+  .delivery-cta { text-align: center; padding: 30px 20px; }
+  .delivery-cta p { font-size: 20px; color: #d8d8e8; margin-bottom: 25px; font-weight: 600; }
 
   /* ===== КОНТАКТЫ ===== */
   .contact-box {
@@ -819,41 +744,24 @@
   .contact-box p { margin-bottom: 25px; color: #c8c8d8; font-size: 17px; line-height: 1.8; }
 
   .btn-contact.phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
     background: linear-gradient(135deg, #a855f7, #3b82f6);
-    color: #fff;
-    padding: 15px 32px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    margin-bottom: 25px;
-    transition: all 0.3s;
-    box-shadow: 0 8px 30px rgba(168,85,247,0.4);
+    color: #fff; padding: 15px 32px; border-radius: 50px;
+    text-decoration: none; font-weight: 700; margin-bottom: 25px;
+    transition: all 0.3s; box-shadow: 0 8px 30px rgba(168,85,247,0.4);
     font-size: 15px;
   }
   .btn-contact.phone svg { width: 20px; height: 20px; }
   .btn-contact.phone:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 15px 45px rgba(168,85,247,0.7); }
 
   .contact-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-    margin-top: 25px;
-    flex-wrap: wrap;
+    display: flex; justify-content: center; align-items: center;
+    gap: 18px; margin-top: 25px; flex-wrap: wrap;
   }
   .contact-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s;
-    position: relative;
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; transition: all 0.3s; position: relative;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   }
   .contact-icon svg { width: 30px; height: 30px; }
@@ -871,176 +779,57 @@
   }
   .contact-icon.wa:hover { box-shadow: 0 12px 40px rgba(37,211,102,0.8); }
 
-  /* ===== ФОРМА ЗАКАЗА ===== */
-  .order-form {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 22px; padding: 40px 32px;
-    max-width: 700px; margin: 0 auto;
-  }
-  .form-section {
-    margin-bottom: 30px; padding-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .form-section:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
-  .form-section-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 16px; font-weight: 800; letter-spacing: 1px;
-    text-transform: uppercase; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
-    background: linear-gradient(90deg, #c084fc, #60a5fa);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .form-section-title::before {
-    content: ''; width: 4px; height: 20px;
-    background: linear-gradient(180deg, #c084fc, #60a5fa);
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(192,132,252,0.8);
-  }
-  .order-form label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: #d8d8e8; }
-  .order-form input[type="text"],
-  .order-form input[type="tel"],
-  .order-form textarea,
-  .order-form select {
-    width: 100%; padding: 14px 18px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px; margin-bottom: 18px;
-    font-size: 15px; font-family: inherit; color: #fff;
-    transition: all 0.3s; appearance: none;
-  }
-  .order-form select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c084fc' stroke-width='3' stroke-linecap='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 18px center;
-    background-size: 16px;
-    padding-right: 45px;
-    cursor: pointer;
-  }
-  .order-form select option { background: #1a1a35; color: #fff; }
-  .order-form input::placeholder, .order-form textarea::placeholder { color: #7878a0; }
-  .order-form input:focus, .order-form textarea:focus, .order-form select:focus {
-    outline: none; border-color: #c084fc;
-    background: rgba(168,85,247,0.12);
-    box-shadow: 0 0 0 4px rgba(168,85,247,0.2);
-  }
-  .order-form textarea { resize: vertical; min-height: 100px; }
-
-  .file-upload {
-    position: relative; display: block; padding: 25px;
-    background: rgba(168,85,247,0.08);
-    border: 2px dashed rgba(192,132,252,0.5);
-    border-radius: 14px; text-align: center;
-    cursor: pointer; transition: all 0.3s; margin-bottom: 18px;
-  }
-  .file-upload:hover { border-color: #c084fc; background: rgba(168,85,247,0.15); box-shadow: 0 0 25px rgba(192,132,252,0.3); }
-  .file-upload input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-  .file-upload-icon { width: 44px; height: 44px; margin: 0 auto 10px; filter: drop-shadow(0 0 10px rgba(192,132,252,0.8)); }
-  .file-upload-text { font-size: 14px; color: #d8d8e8; font-weight: 600; }
-  .file-upload-hint { font-size: 12px; color: #9898b0; margin-top: 5px; }
-  .file-name { font-size: 13px; color: #c084fc; margin-top: 8px; font-weight: 700; }
-
-  .qty-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-  .qty-btn {
-    width: 46px; height: 46px;
-    background: rgba(168,85,247,0.15);
-    border: 1px solid rgba(192,132,252,0.5);
-    border-radius: 12px; color: #c084fc;
-    font-size: 24px; font-weight: 800; cursor: pointer;
-    transition: all 0.2s; font-family: inherit;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .qty-btn:hover { background: rgba(168,85,247,0.3); border-color: #c084fc; box-shadow: 0 0 15px rgba(192,132,252,0.5); }
-  .qty-btn:active { transform: scale(0.95); }
-  .qty-input {
-    width: 90px !important; text-align: center;
-    font-size: 20px !important; font-weight: 800 !important;
-    color: #c084fc !important; margin-bottom: 0 !important;
-  }
-
-  .order-submit {
-    width: 100%;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: #fff; border: none;
-    padding: 20px; border-radius: 50px;
-    font-size: 17px; font-weight: 900;
-    cursor: pointer; font-family: inherit;
-    transition: all 0.3s;
-    box-shadow: 0 10px 40px rgba(37,211,102,0.5);
-    letter-spacing: 1.5px; text-transform: uppercase;
-    position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-  }
-  .order-submit::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.6s;
-  }
-  .order-submit:hover::before { left: 100%; }
-  .order-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 50px rgba(37,211,102,0.8); }
-  .order-submit svg { width: 24px; height: 24px; }
-
+  /* ===== ФУТЕР ===== */
   footer {
-    text-align: center; padding: 35px 20px; color: #7878a0; font-size: 14px;
+    text-align: center; padding: 35px 20px; color: #a0a0b8; font-size: 14px;
     border-top: 1px solid rgba(255,255,255,0.06); margin-top: 50px;
+    line-height: 1.8;
+  }
+  .footer-info { margin-bottom: 10px; }
+  .footer-legal {
+    font-size: 13px; color: #c8c8d8; margin-bottom: 10px;
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .footer-note {
+    font-size: 12px; color: #7878a0; max-width: 600px; margin: 10px auto 0;
+    font-style: italic;
   }
 
   .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  .form-note {
-    font-size: 13px; color: #9898b0; text-align: center; margin-top: 15px; line-height: 1.6;
-  }
-  .form-note strong { color: #c084fc; }
-
   /* ===== ПЛАВАЮЩИЕ КНОПКИ ===== */
   .float-buttons {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
+    position: fixed; right: 20px; bottom: 20px; z-index: 200;
+    display: flex; flex-direction: column; gap: 12px; align-items: center;
+    pointer-events: none;
   }
+  .float-buttons > * { pointer-events: auto; }
   .float-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.3s;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; text-decoration: none; transition: transform 0.3s;
     position: relative;
   }
   .float-btn:hover { transform: scale(1.12); }
   .float-btn svg { width: 28px; height: 28px; }
   .float-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    z-index: -1;
-    animation: floatPulse 2.2s infinite;
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    z-index: -1; animation: floatPulse 2.2s infinite;
   }
   .float-tg {
     background: linear-gradient(135deg, #229ED9, #0088cc);
     box-shadow: 0 8px 25px rgba(34,158,217,0.5);
   }
-  .float-tg::before {
-    background: rgba(34,158,217,0.6);
+  .float-tg::before { background: rgba(34,158,217,0.6); }
+  .float-call {
+    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    box-shadow: 0 8px 25px rgba(168,85,247,0.5);
   }
-  .float-wa {
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    box-shadow: 0 8px 25px rgba(37,211,102,0.5);
-  }
-  .float-wa::before {
-    background: rgba(37,211,102,0.6);
-  }
+  .float-call::before { background: rgba(168,85,247,0.6); }
   @keyframes floatPulse {
     0% { transform: scale(1); opacity: 0.7; }
     70% { transform: scale(1.6); opacity: 0; }
@@ -1049,23 +838,12 @@
 
   /* ===== КНОПКА НАВЕРХ ===== */
   .scroll-top {
-    position: fixed;
-    right: 20px;
-    bottom: 155px;
-    z-index: 199;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    position: fixed; right: 20px; bottom: 155px; z-index: 199;
+    width: 48px; height: 48px; border-radius: 50%;
     background: rgba(168,85,247,0.9);
     border: 1px solid rgba(192,132,252,0.6);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s;
     box-shadow: 0 6px 20px rgba(168,85,247,0.5);
     backdrop-filter: blur(8px);
   }
@@ -1075,105 +853,61 @@
 
   /* ===== ЛАЙТБОКС ===== */
   .lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
+    position: fixed; inset: 0; z-index: 999;
     background: rgba(10, 10, 20, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    padding: 30px;
-    cursor: zoom-out;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+    padding: 30px; cursor: zoom-out;
   }
   .lightbox.open { opacity: 1; visibility: visible; }
 
   .lightbox-img {
-    max-width: 95vw;
-    max-height: 90vh;
-    border-radius: 16px;
+    max-width: 95vw; max-height: 90vh; border-radius: 16px;
     box-shadow: 0 20px 80px rgba(168,85,247,0.6);
-    object-fit: contain;
-    transform: scale(0.9);
-    transition: transform 0.3s;
-    cursor: default;
+    object-fit: contain; transform: scale(0.9);
+    transition: transform 0.3s; cursor: default;
   }
   .lightbox.open .lightbox-img { transform: scale(1); }
 
   .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    position: absolute; top: 20px; right: 20px;
+    width: 48px; height: 48px; border-radius: 50%;
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    font-family: inherit;
-    line-height: 1;
+    color: #fff; font-size: 24px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; font-family: inherit; line-height: 1;
   }
   .lightbox-close:hover { background: rgba(168,85,247,0.5); transform: rotate(90deg); }
 
   .lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 56px; height: 56px; border-radius: 50%;
     background: rgba(168,85,247,0.3);
     border: 1px solid rgba(192,132,252,0.5);
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    font-family: inherit;
-    user-select: none;
+    color: #fff; font-size: 28px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; font-family: inherit; user-select: none;
   }
   .lightbox-nav:hover { background: rgba(168,85,247,0.7); transform: translateY(-50%) scale(1.1); }
   .lightbox-prev { left: 20px; }
   .lightbox-next { right: 20px; }
 
-  /* Кнопка "Заказать такое же" в лайтбоксе */
   .lightbox-order {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
+    position: absolute; bottom: 25px; left: 50%;
     transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 32px;
     background: linear-gradient(135deg, #25D366, #128C7E);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-family: inherit;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
+    color: #fff; border: none; border-radius: 50px;
+    font-family: inherit; font-weight: 800; font-size: 15px;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
     box-shadow: 0 10px 35px rgba(37,211,102,0.6);
     transition: all 0.3s;
     animation: lightboxOrderPulse 2.2s ease-in-out infinite;
-    z-index: 10;
-    white-space: nowrap;
+    z-index: 10; white-space: nowrap;
   }
   .lightbox-order:hover {
     transform: translateX(-50%) translateY(-3px) scale(1.05);
@@ -1185,7 +919,7 @@
     50% { box-shadow: 0 10px 50px rgba(37,211,102,0.9); }
   }
 
-  /* ===== ОПТИМИЗАЦИЯ ДЛЯ ТЕЛЕФОНОВ ===== */
+  /* ===== МОБИЛЬНЫЕ ===== */
   @media (max-width: 768px) {
     .hero-slide,
     .work-slide,
@@ -1195,43 +929,17 @@
       animation: none !important;
       will-change: auto;
     }
-    .hero-slide.has-image {
-      animation: none !important;
+    .hero-slide.has-image { animation: none !important; }
+    .hero-btn { animation: none !important; will-change: auto; }
+    .hero-btn svg { animation: none !important; }
+    .feature-icon, .category-icon, .delivery-icon {
+      animation: none !important; will-change: auto;
     }
-
-    .hero-btn {
-      animation: none !important;
-      will-change: auto;
+    .hero-banner::before { animation: none !important; }
+    .hero-slide, .work-slide, .mini-slide {
+      box-shadow: 0 6px 12px rgba(0,0,0,0.35), 0 15px 30px rgba(168,85,247,0.2) !important;
     }
-    .hero-btn svg {
-      animation: none !important;
-    }
-
-    .feature-icon,
-    .category-icon,
-    .delivery-icon {
-      animation: none !important;
-      will-change: auto;
-    }
-
-    .hero-banner::before {
-      animation: none !important;
-    }
-
-    .hero-slide,
-    .work-slide,
-    .mini-slide {
-      box-shadow:
-        0 6px 12px rgba(0,0,0,0.35),
-        0 15px 30px rgba(168,85,247,0.2) !important;
-    }
-
-    header {
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-
-    /* Преимущества: 2+2+1 на планшете */
+    header { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
     .features { grid-template-columns: repeat(2, 1fr); }
     .features > .feature,
     .features > .feature:nth-child(4),
@@ -1256,7 +964,6 @@
     .works-track { gap: 20px; }
     .category-header { padding: 0 20px 15px; }
     .mini-carousel { padding: 15px 20px 20px; gap: 15px; }
-    .order-form { padding: 28px 20px; }
     .category-title .price { font-size: 13px; }
     .reviews-wall { gap: 25px; }
     .review-note { font-size: 18px; padding: 30px 22px 22px; }
@@ -1277,9 +984,8 @@
     .contact-icons { gap: 14px; }
     .lightbox-order { bottom: 15px; padding: 12px 24px; font-size: 13px; }
     .lightbox-order svg { width: 18px; height: 18px; }
-
-    /* Преимущества: 1 колонка на телефоне */
     .features { grid-template-columns: 1fr; }
+    .footer-legal { font-size: 12px; padding: 10px 14px; }
   }
 </style>
 </head>
@@ -1300,7 +1006,6 @@
       <button onclick="showPage('reviews', this)">Отзывы</button>
       <button onclick="showPage('delivery', this)">Доставка</button>
       <button onclick="showPage('contacts', this)">Контакты</button>
-      <button onclick="showPage('order', this)">Заказать</button>
     </nav>
   </div>
 </header>
@@ -1313,8 +1018,8 @@
       <h1 class="hero-title">DCASEBOX</h1>
       <p class="hero-subtitle">Печатаем эмоции на кружках, бутылках, футболках и сувенирах. Яркий подарок или корпоративный мерч — сделаем с душой и быстро.</p>
       <div class="hero-buttons">
-        <button class="hero-btn" onclick="showPage('order')">
-          Оставить заявку
+        <button class="hero-btn" onclick="showPage('contacts')">
+          Связаться с нами
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <button class="hero-btn hero-btn-ghost" onclick="showPage('catalog')">Смотреть каталог</button>
@@ -1501,7 +1206,7 @@
             <path d="M32 4l6 14 15 1-11 10 3 15-13-7-13 7 3-15-11-10 15-1 6-14z" stroke="url(#d5)" stroke-width="3" stroke-linejoin="round"/></svg>
           </div>
           <h3>Самовывоз в Казани</h3>
-          <p>Заберёте лично с нашего производства. Адрес уточняется при заказе.</p>
+          <p>Заберёте лично из нашей мастерской. Бесплатно. Адрес уточняется при заказе.</p>
         </div>
 
       </div>
@@ -1521,16 +1226,16 @@
         </div>
         <div class="delivery-detail-row">
           <span class="delivery-detail-label">Упаковка</span>
-          <span class="delivery-detail-value">Каждое изделие надёжно упаковано. Мы заботимся о том, чтобы ваш заказ пришел к вам в сохранности</span>
+          <span class="delivery-detail-value">Каждое изделие аккуратно упаковано</span>
         </div>
       </div>
 
       <div class="delivery-cta reveal">
-  <p>Остались вопросы по доставке?</p>
-  <a href="https://wa.me/79274996077?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A3%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B5." class="hero-btn" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.6.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.6.1-.25-.15-1.05-.4-2-1.25-.75-.65-1.25-1.5-1.4-1.75-.15-.25 0-.4.1-.5.1-.1.25-.3.35-.45.15-.15.2-.25.3-.45.1-.15.05-.35-.05-.5-.1-.15-.6-1.5-.85-2-.2-.5-.4-.45-.6-.45h-.5c-.15 0-.45.05-.7.3-.25.3-.9.9-.9 2.2 0 1.3.95 2.55 1.05 2.7.1.15 1.8 2.8 4.4 3.9.6.25 1.1.4 1.45.55.65.2 1.2.2 1.7.1.5-.05 1.7-.7 1.9-1.35.25-.7.25-1.25.15-1.35-.05-.15-.25-.2-.5-.35zM12 2a10 10 0 0 0-8.5 15.25L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
-    Напишите нам
-  </a>
+        <p>Остались вопросы по доставке?</p>
+        <button class="hero-btn" onclick="showPage('contacts')">
+          Напишите нам
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
 
     </div>
@@ -1550,7 +1255,8 @@
       </a>
 
       <div class="contact-icons">
-<a href="https://telegram.me/dcasebox" class="contact-icon tg" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">          <svg viewBox="0 0 24 24" fill="#fff"><path d="M22 3L2 10.5l5 2 2 6 3-4 5 4 5-15.5zM9.5 13.5l.5 4 1.5-2.5-2-1.5z"/></svg>
+        <a href="https://telegram.me/dcasebox" class="contact-icon tg" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M22 3L2 10.5l5 2 2 6 3-4 5 4 5-15.5zM9.5 13.5l.5 4 1.5-2.5-2-1.5z"/></svg>
         </a>
         <a href="https://wa.me/79274996077" class="contact-icon wa" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
           <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.6.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.6.1-.25-.15-1.05-.4-2-1.25-.75-.65-1.25-1.5-1.4-1.75-.15-.25 0-.4.1-.5.1-.1.25-.3.35-.45.15-.15.2-.25.3-.45.1-.15.05-.35-.05-.5-.1-.15-.6-1.5-.85-2-.2-.5-.4-.45-.6-.45h-.5c-.15 0-.45.05-.7.3-.25.3-.9.9-.9 2.2 0 1.3.95 2.55 1.05 2.7.1.15 1.8 2.8 4.4 3.9.6.25 1.1.4 1.45.55.65.2 1.2.2 1.7.1.5-.05 1.7-.7 1.9-1.35.25-.7.25-1.25.15-1.35-.05-.15-.25-.2-.5-.35zM12 2a10 10 0 0 0-8.5 15.25L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
@@ -1560,93 +1266,13 @@
   </div>
 </div>
 
-<!-- ===== ЗАКАЗАТЬ ===== -->
-<div id="order" class="page">
-  <div class="container">
-    <h2>Оформление заказа</h2>
-    <div class="order-form reveal">
-      <form id="orderForm">
-
-        <div class="form-section">
-          <div class="form-section-title">1. Что заказать</div>
-
-          <label>Выберите товар</label>
-          <select id="productSelect" required>
-            <option value="">— Выберите из списка —</option>
-            <option value="Бутылки для воды 500 мл">Бутылки для воды 500 мл</option>
-            <option value="Кружки белые Premium">Кружки белые Premium</option>
-            <option value="Необычные кружки">Необычные кружки</option>
-            <option value="Тарелки сувенирные для учителей (с рисунком детей)">Тарелки сувенирные (рисунок детей)</option>
-            <option value="Тарелки сувенирные для учителей (с фото)">Тарелки сувенирные (с фото)</option>
-            <option value="Тарелки с фото/картинками">Тарелки с фото / картинками</option>
-            <option value="Футболки и худи с принтом">Футболки и худи с принтом</option>
-            <option value="Носки с принтом">Носки с принтом</option>
-            <option value="Подушки с фото/картинками">Подушки с фото / картинками</option>
-            <option value="Бейсболка с печатью">Бейсболка с печатью</option>
-            <option value="Печать на ручках и блокнотах">Печать на ручках и блокнотах</option>
-            <option value="other">— Другое (укажу ниже) —</option>
-          </select>
-
-          <div id="otherProductWrap" style="display:none;">
-            <label>Что именно нужно?</label>
-            <input type="text" id="otherProduct" placeholder="Опишите товар (например: термос, чехол, брелок)">
-          </div>
-
-          <label>Количество</label>
-          <div class="qty-wrap">
-            <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-            <input type="text" class="qty-input" id="qtyInput" value="1" readonly>
-            <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-          </div>
-
-          <label>Опишите дизайн</label>
-          <textarea id="designDesc" placeholder="Что напечатать? Текст, надпись, логотип, фото, пожелания по цвету и стилю..."></textarea>
-
-          <label>Пример фото (по желанию)</label>
-          <label class="file-upload">
-            <input type="file" id="fileInput" accept="image/*">
-            <div class="file-upload-icon">
-              <svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="upIco"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
-              <path d="M32 10v30M18 24l14-14 14 14" stroke="url(#upIco)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 46v6a4 4 0 0 0 4 4h36a4 4 0 0 0 4-4v-6" stroke="url(#upIco)" stroke-width="4" stroke-linecap="round"/></svg>
-            </div>
-            <div class="file-upload-text">Нажмите, чтобы выбрать фото</div>
-            <div class="file-upload-hint">JPG, PNG · до 10 МБ</div>
-            <div class="file-name" id="fileName"></div>
-          </label>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">2. Ваши контакты</div>
-
-          <label>Ваше имя *</label>
-          <input type="text" id="clientName" placeholder="Как к вам обращаться" required>
-
-          <label>Телефон или WhatsApp *</label>
-          <input type="tel" id="clientPhone" placeholder="+7 ___ ___-__-__" required>
-
-          <label>Город</label>
-          <input type="text" id="clientCity" placeholder="Например: Казань">
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">3. Отправить заявку</div>
-          <button type="submit" class="order-submit">
-            <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.6.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.6.1-.25-.15-1.05-.4-2-1.25-.75-.65-1.25-1.5-1.4-1.75-.15-.25 0-.4.1-.5.1-.1.25-.3.35-.45.15-.15.2-.25.3-.45.1-.15.05-.35-.05-.5-.1-.15-.6-1.5-.85-2-.2-.5-.4-.45-.6-.45h-.5c-.15 0-.45.05-.7.3-.25.3-.9.9-.9 2.2 0 1.3.95 2.55 1.05 2.7.1.15 1.8 2.8 4.4 3.9.6.25 1.1.4 1.45.55.65.2 1.2.2 1.7.1.5-.05 1.7-.7 1.9-1.35.25-.7.25-1.25.15-1.35-.05-.15-.25-.2-.5-.35zM12 2a10 10 0 0 0-8.5 15.25L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
-            Отправить
-          </button>
-          <p class="form-note">Откроется WA с готовым текстом заявки. <strong>Прикрепите фото примера прямо в чате</strong> — так мы сразу всё увидим и свяжемся с вами.</p>
-        </div>
-
-      </form>
-    </div>
-  </div>
-</div>
-
 <!-- Плавающие кнопки -->
 <div class="float-buttons">
-<a href="https://telegram.me/dcasebox" class="float-btn float-tg" target="_blank" rel="noopener" aria-label="Написать в Telegram">  <a href="https://wa.me/79274996077?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%BD%D1%82" class="float-btn float-wa" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
-    <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.6.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.6.1-.25-.15-1.05-.4-2-1.25-.75-.65-1.25-1.5-1.4-1.75-.15-.25 0-.4.1-.5.1-.1.25-.3.35-.45.15-.15.2-.25.3-.45.1-.15.05-.35-.05-.5-.1-.15-.6-1.5-.85-2-.2-.5-.4-.45-.6-.45h-.5c-.15 0-.45.05-.7.3-.25.3-.9.9-.9 2.2 0 1.3.95 2.55 1.05 2.7.1.15 1.8 2.8 4.4 3.9.6.25 1.1.4 1.45.55.65.2 1.2.2 1.7.1.5-.05 1.7-.7 1.9-1.35.25-.7.25-1.25.15-1.35-.05-.15-.25-.2-.5-.35zM12 2a10 10 0 0 0-8.5 15.25L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+  <a href="https://telegram.me/dcasebox" class="float-btn float-tg" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M22 3L2 10.5l5 2 2 6 3-4 5 4 5-15.5zM9.5 13.5l.5 4 1.5-2.5-2-1.5z"/></svg>
+  </a>
+  <a href="tel:+79274996077" class="float-btn float-call" aria-label="Позвонить">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg>
   </a>
 </div>
 
@@ -1667,12 +1293,18 @@
 </div>
 
 <footer>
-  © 2025–<span id="currentYear"></span> DCASEBOX · Казань · Нанесение принтов
+  <div class="footer-info">
+    © 2025–<span id="currentYear"></span> DCASEBOX · Казань · Нанесение принтов
+  </div>
+  <div class="footer-legal">
+    Самозанятый: <strong>[ФИО]</strong> · ИНН: <strong>[ИНН]</strong> · Тел: +7 927 499-60-77
+  </div>
+  <div class="footer-note">
+    Информация на сайте носит справочный характер и не является публичной офертой.
+  </div>
 </footer>
 
 <script>
-  const WHATSAPP_NUMBER = '79274996077';
-
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   const heroPhotos = [
@@ -1814,11 +1446,9 @@ const worksRow4 = [
     cap: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-cap"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M10 40a22 22 0 0 1 44 0v6H10v-6z" stroke="url(#i-cap)" stroke-width="3"/><path d="M54 42h6a2 2 0 0 1 0 4h-6" stroke="url(#i-cap)" stroke-width="3"/></svg>`,
     socks: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-sock"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M20 8h16v22l10 10a8 8 0 0 1-11 11l-13-13a8 8 0 0 1-2-5V8z" stroke="url(#i-sock)" stroke-width="3" stroke-linejoin="round"/><path d="M20 16h16" stroke="url(#i-sock)" stroke-width="2" opacity="0.6"/></svg>`,
     pillow: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-pil"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M14 14 Q10 10 14 8 Q32 4 50 8 Q54 10 50 14 Q56 32 50 50 Q54 54 50 56 Q32 60 14 56 Q10 54 14 50 Q8 32 14 14 Z" stroke="url(#i-pil)" stroke-width="3" stroke-linejoin="round"/></svg>`,
-    pen: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-pen"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M44 6l14 14-30 30-14 4 4-14L44 6z" stroke="url(#i-pen)" stroke-width="3" stroke-linejoin="round"/><path d="M36 14l14 14" stroke="url(#i-pen)" stroke-width="2" opacity="0.6"/><path d="M14 54l-6 6" stroke="url(#i-pen)" stroke-width="3" stroke-linecap="round"/></svg>`,
-    bag: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-bag"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M10 20h44v36H10z" stroke="url(#i-bag)" stroke-width="3" stroke-linejoin="round"/><path d="M22 20v-6a10 10 0 0 1 20 0v6" stroke="url(#i-bag)" stroke-width="3" stroke-linecap="round"/><path d="M10 32h44" stroke="url(#i-bag)" stroke-width="2" opacity="0.5"/></svg>`
+    pen: `<svg viewBox="0 0 64 64" fill="none"><defs><linearGradient id="i-pen"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs><path d="M44 6l14 14-30 30-14 4 4-14L44 6z" stroke="url(#i-pen)" stroke-width="3" stroke-linejoin="round"/><path d="M36 14l14 14" stroke="url(#i-pen)" stroke-width="2" opacity="0.6"/><path d="M14 54l-6 6" stroke="url(#i-pen)" stroke-width="3" stroke-linecap="round"/></svg>`
   };
 
-  /* Автогод в футере */
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 
   /* Пауза фоновых анимаций при скролле */
@@ -1846,7 +1476,6 @@ const worksRow4 = [
     }
   });
 
-  /* Красивое появление фото по мере загрузки */
   function attachImageLoad(container) {
     const images = container.querySelectorAll('img');
     images.forEach(img => {
@@ -1866,7 +1495,6 @@ const worksRow4 = [
     });
   }
 
-  /* ПЛАВНЫЙ JS-ДВИЖОК КАРУСЕЛЕЙ */
   function startMarquee(track, direction, durationSec) {
     let pos = 0;
     let last = performance.now();
@@ -1979,10 +1607,6 @@ const worksRow4 = [
           <div class="category-title">
             <h3>${cat.title}</h3>
             <div class="price">${cat.price}</div>
-            <button class="category-order-btn" onclick="orderCategory('${cat.title.replace(/'/g, "\\'")}')">
-              Заказать
-              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
           </div>
         </div>
         <div class="mini-carousel">${slides}</div>
@@ -2070,57 +1694,6 @@ const worksRow4 = [
     });
   }
   setTimeout(animateCounters, 500);
-
-  function changeQty(delta) {
-    const input = document.getElementById('qtyInput');
-    let val = parseInt(input.value) || 1;
-    val += delta;
-    if (val < 1) val = 1;
-    input.value = val;
-  }
-
-  document.getElementById('productSelect').addEventListener('change', function() {
-    const wrap = document.getElementById('otherProductWrap');
-    wrap.style.display = this.value === 'other' ? 'block' : 'none';
-  });
-
-  document.getElementById('fileInput').addEventListener('change', function() {
-    document.getElementById('fileName').textContent = this.files[0] ? '✓ ' + this.files[0].name : '';
-  });
-
-  document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const productSelect = document.getElementById('productSelect').value;
-    let product = productSelect;
-    if (productSelect === 'other') {
-      product = document.getElementById('otherProduct').value || 'Другое';
-    }
-
-    const qty = document.getElementById('qtyInput').value;
-    const design = document.getElementById('designDesc').value || '—';
-    const fileName = document.getElementById('fileName').textContent.replace('✓ ', '') || '—';
-    const name = document.getElementById('clientName').value;
-    const phone = document.getElementById('clientPhone').value;
-    const city = document.getElementById('clientCity').value || '—';
-
-    const message = 
-`🛒 *НОВАЯ ЗАЯВКА DCASEBOX*
-
-📦 *Товар:* ${product}
-🔢 *Количество:* ${qty} шт.
-🎨 *Дизайн:* ${design}
-📎 *Фото примера:* ${fileName}
-
-👤 *Имя:* ${name}
-📞 *Телефон:* ${phone}
-🏙 *Город:* ${city}
-
-_Фото пример отправлю следующим сообщением_`;
-
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  });
 
   /* ===== ЛАЙТБОКС ===== */
   let lightboxImages = [];
@@ -2214,26 +1787,6 @@ _Фото пример отправлю следующим сообщением_
   scrollTopBtn.addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  /* ===== КНОПКА ЗАКАЗАТЬ В КАТАЛОГЕ ===== */
-  function orderCategory(title) {
-    showPage('order');
-    setTimeout(function() {
-      const sel = document.getElementById('productSelect');
-      for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value === title) {
-          sel.selectedIndex = i;
-          sel.dispatchEvent(new Event('change'));
-          break;
-        }
-      }
-      if (sel.value === '') {
-        sel.value = 'other';
-        sel.dispatchEvent(new Event('change'));
-        document.getElementById('otherProduct').value = title;
-      }
-    }, 150);
-  }
 
   window.addEventListener('popstate', function(e) {
     const lightbox = document.getElementById('lightbox');
