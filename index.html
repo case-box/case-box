@@ -1067,7 +1067,6 @@
   .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ===== КАСКАДНОЕ ПОЯВЛЕНИЕ ===== */
   .features > .feature:nth-child(1),
   .stats > .stat:nth-child(1),
   .delivery-grid > .delivery-card:nth-child(1) { transition-delay: 0s; }
@@ -1603,176 +1602,180 @@
     <h2>Что говорят клиенты</h2>
     <div class="reviews-wall">
 
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">Е</div>
-      <div class="review-who">
-        <div class="review-author">Евгения</div>
-        <div class="review-date">14 октября 2026</div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">Е</div>
+          <div class="review-who">
+            <div class="review-author">Евгения</div>
+            <div class="review-date">14 октября 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Заказали 34 именные бутылочки для класса! Скинули макет на согласование, всё быстро поправили. Обещали 2-3 дня — сделали за один 😍 Помогли с Яндекс.Доставкой. Теперь только к вам!</p>
+        <div class="review-pros"><strong>Достоинства:</strong> быстро, качественно, помогли с доставкой</div>
+        <div class="review-photos">
+          <img src="https://iili.io/nWHnV2f.md.jpg" alt="Бутылки" loading="lazy">
+          <img src="https://iili.io/nWHnhp2.md.jpg" alt="Бутылки" loading="lazy">
+        </div>
+        <div class="seller-reply">
+          <div class="seller-label">Ответ продавца</div>
+          <div class="seller-text">Евгения, спасибо за такой тёплый отзыв! Рады, что всё успели в срок. Ждём вас снова 🌸</div>
+        </div>
       </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Заказали 34 именные бутылочки для класса! Скинули макет на согласование, всё быстро поправили. Обещали 2-3 дня — сделали за один 😍 Помогли с Яндекс.Доставкой. Теперь только к вам!</p>
-    <div class="review-pros"><strong>Достоинства:</strong> быстро, качественно, помогли с доставкой</div>
-    <div class="review-photos">
-      <img src="https://iili.io/nWHnV2f.md.jpg" alt="Бутылки" loading="lazy">
-    </div>
-    <div class="seller-reply">
-      <div class="seller-label">Ответ продавца</div>
-      <div class="seller-text">Евгения, спасибо за такой тёплый отзыв! Рады, что всё успели в срок. Ждём вас снова 🌸</div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">О</div>
+          <div class="review-who">
+            <div class="review-author">Ольга</div>
+            <div class="review-date">28 сентября 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Спасибо большое! Отвечали быстро, всё аккуратно упаковали. Заказывали именные бутылочки для танцевального коллектива — дети в восторге 😍</p>
+        <div class="review-pros"><strong>Достоинства:</strong> оперативность, отзывчивость</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">А</div>
+          <div class="review-who">
+            <div class="review-author">Аделя</div>
+            <div class="review-date">3 сентября 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Очень трепетно подошли к макету — я сама придирчивая, но результат превзошёл ожидания. Памятная тарелочка вживую ещё красивее, чем на фото ❤️</p>
+        <div class="review-photos">
+          <img src="https://iili.io/nWHzlLP.md.jpg" alt="Тарелка" loading="lazy">
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">А</div>
+          <div class="review-who">
+            <div class="review-author">Айгуль</div>
+            <div class="review-date">22 июля 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Заказывали на выпускной, всё сделали качественно и быстро. Каждая бутылочка в отдельной коробочке с наклейкой — очень удобно, ничего не перепутали. Печать яркая, не стирается 👍</p>
+        <div class="review-pros"><strong>Достоинства:</strong> каждая в коробочке, яркая печать</div>
+        <div class="review-photos">
+          <img src="https://iili.io/nWHnXkl.md.jpg" alt="Бутылки" loading="lazy">
+          <img src="https://iili.io/nWHnW74.md.jpg" alt="Бутылки" loading="lazy">
+        </div>
+        <div class="seller-reply">
+          <div class="seller-label">Ответ продавца</div>
+          <div class="seller-text">Айгуль, спасибо! Нам очень приятно, что вы оценили упаковку — мы стараемся, чтобы всё доехало в идеальном виде 🙌</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">М</div>
+          <div class="review-who">
+            <div class="review-author">ФСК «Мира»</div>
+            <div class="review-date">6 июня 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Срочный заказ — 170 бутылок с логотипом за несколько дней. Были на связи 24/7, помогли с отправкой в другой город. Принт чёткий, ошибок в именах нет. Родители и дети довольны! 🌹</p>
+        <div class="review-pros"><strong>Достоинства:</strong> скорость, качество, связь 24/7</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">Е</div>
+          <div class="review-who">
+            <div class="review-author">Екатерина</div>
+            <div class="review-date">19 апреля 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Спасибо огромное за качество и скорость! 👍 Всё как хотелось, даже лучше. Заказывала подарок мужу, он был в восторге ❤️</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">А</div>
+          <div class="review-who">
+            <div class="review-author">Айгуль</div>
+            <div class="review-date">24 февраля 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Всё понравилось! Сотрудники общались культурно и вежливо, заказ выполнили в срок. Качество сувениров отличное.</p>
+        <div class="review-pros"><strong>Достоинства:</strong> вежливость, качество</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">А</div>
+          <div class="review-who">
+            <div class="review-author">Альбина</div>
+            <div class="review-date">15 января 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">Заказывали 21 кружку на день рождения ребёнка — сделали за два дня! Перед печатью скинули макет, даже внесли наши правки. Очень оперативно и по-человечески. Спасибо!</p>
+        <div class="review-pros"><strong>Достоинства:</strong> быстро, учли правки</div>
+        <div class="review-photos">
+          <img src="https://iili.io/nWHoZtS.md.jpg" alt="Кружки" loading="lazy">
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">О</div>
-      <div class="review-who">
-        <div class="review-author">Ольга</div>
-        <div class="review-date">28 сентября 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Спасибо большое! Отвечали быстро, всё аккуратно упаковали. Заказывали именные бутылочки для танцевального коллектива — дети в восторге 😍</p>
-    <div class="review-pros"><strong>Достоинства:</strong> оперативность, отзывчивость</div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">А</div>
-      <div class="review-who">
-        <div class="review-author">Аделя</div>
-        <div class="review-date">3 сентября 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Очень трепетно подошли к макету — я сама придирчивая, но результат превзошёл ожидания. Памятная тарелочка вживую ещё красивее, чем на фото ❤️</p>
-    <div class="review-photos">
-      <img src="https://iili.io/nWHzlLP.md.jpg" alt="Тарелка" loading="lazy">
-    </div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">А</div>
-      <div class="review-who">
-        <div class="review-author">Айгуль</div>
-        <div class="review-date">22 июля 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Заказывали на выпускной, всё сделали качественно и быстро. Каждая бутылочка в отдельной коробочке с наклейкой — очень удобно, ничего не перепутали. Печать яркая, не стирается 👍</p>
-    <div class="review-pros"><strong>Достоинства:</strong> каждая в коробочке, яркая печать</div>
-    <div class="review-photos">
-      <img src="https://iili.io/nWHnW74.md.jpg" alt="Бутылки" loading="lazy">
-    </div>
-    <div class="seller-reply">
-      <div class="seller-label">Ответ продавца</div>
-      <div class="seller-text">Айгуль, спасибо! Нам очень приятно, что вы оценили упаковку — мы стараемся, чтобы всё доехало в идеальном виде 🙌</div>
-    </div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">М</div>
-      <div class="review-who">
-        <div class="review-author">ФСК «Мира»</div>
-        <div class="review-date">6 июня 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Срочный заказ — 170 бутылок с логотипом за несколько дней. Были на связи 24/7, помогли с отправкой в другой город. Принт чёткий, ошибок в именах нет. Родители и дети довольны! 🌹</p>
-    <div class="review-pros"><strong>Достоинства:</strong> скорость, качество, связь 24/7</div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">Е</div>
-      <div class="review-who">
-        <div class="review-author">Екатерина</div>
-        <div class="review-date">19 апреля 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Спасибо огромное за качество и скорость! 👍 Всё как хотелось, даже лучше. Заказывала подарок мужу, он был в восторге ❤️</p>
-  </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">А</div>
-      <div class="review-who">
-        <div class="review-author">Айгуль</div>
-        <div class="review-date">24 февраля 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Всё понравилось! Сотрудники общались культурно и вежливо, заказ выполнили в срок. Качество сувениров отличное.</p>
-    <div class="review-pros"><strong>Достоинства:</strong> вежливость, качество</div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-avatar">А</div>
-      <div class="review-who">
-        <div class="review-author">Альбина</div>
-        <div class="review-date">15 января 2026</div>
-      </div>
-    </div>
-    <div class="review-stars">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <p class="review-text">Заказывали 21 кружку на день рождения ребёнка — сделали за два дня! Перед печатью скинули макет, даже внесли наши правки. Очень оперативно и по-человечески. Спасибо!</p>
-    <div class="review-pros"><strong>Достоинства:</strong> быстро, учли правки</div>
-    <div class="review-photos">
-      <img src="https://iili.io/nWHoZtS.md.jpg" alt="Кружки" loading="lazy">
-    </div>
-  </div>
-
 </div>
 
 <!-- ===== ДОСТАВКА ===== -->
